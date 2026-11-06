@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["./worker-configuration.d.ts", "vite/client", "node"],
+    "allowJs": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src", "site.config.ts", "site.models.ts"]
+}
