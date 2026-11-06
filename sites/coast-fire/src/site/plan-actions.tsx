@@ -62,9 +62,9 @@ export function PrintPlan({ inputs, result, goalAge, period }: Props) {
   const validGoal = Number.isInteger(goal) && goal >= inputs.age && goal <= inputs.retirementAge;
   return (
     <section className="print-plan">
-      <h1>Coast FIRE plan</h1>
+      <h2>Coast FIRE plan</h2>
       <p>US dollars · Amounts in today’s purchasing power · Hypothetical estimates</p>
-      <h2>Your inputs and assumptions</h2>
+      <h3>Your inputs and assumptions</h3>
       <dl>
         <dt>Current / retirement age</dt>
         <dd>
@@ -90,7 +90,7 @@ export function PrintPlan({ inputs, result, goalAge, period }: Props) {
         <dt>Desired Coast age</dt>
         <dd>{validGoal ? goalAge : 'Not selected (enter a valid age in the planner)'}</dd>
       </dl>
-      <h2>Estimated results</h2>
+      <h3>Estimated results</h3>
       <p>
         Coast number today: {dollars(result.coast)}. Retirement target: {dollars(result.target)}. Gap:{' '}
         {dollars(result.gap)}. Surplus: {dollars(result.surplus)}. Progress: {result.progress.toFixed(1)}%.

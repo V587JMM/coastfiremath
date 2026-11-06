@@ -1333,10 +1333,10 @@ caption {
     display: block;
     font-size: 11pt;
   }
-  .print-plan h1 {
+  .print-plan h2 {
     font-size: 22pt;
   }
-  .print-plan h2 {
+  .print-plan h3 {
     margin: 20px 0 10px;
     font-size: 15pt;
   }

@@ -10,7 +10,7 @@ From the ShipWords workspace: `npx --yes pnpm@10.30.1 install`, then `npx --yes 
 
 ## Publishing configuration
 
-Domain, operator and email are intentionally blank at the owner's request. Preview sends noindex and robots disallow, omits canonical URLs, and returns an empty sitemap. Contact explains that no channel has been configured; no email is invented. Before publishing, supply VITE_PUBLIC_SITE_URL (HTTPS origin, no trailing slash), VITE_CONTACT_EMAIL and VITE_OPERATOR_NAME to the build environment. These are public build-time values. Restart/rebuild after changing them. The deploy script validates them and requires Wrangler credentials; no deployment has been performed.
+Set `VITE_PUBLIC_SITE_URL` (the HTTPS origin without a trailing slash), `VITE_CONTACT_EMAIL`, and `VITE_OPERATOR_NAME` in Cloudflare Workers **Settings → Build → Build Variables and Secrets**. Vite reads these public values during the build, so start a fresh build after setting them. Use `pnpm run deploy` from `sites/coast-fire` for production. It checks these values before building and publishing the Worker. Builds without valid settings send noindex and robots disallow, omit canonical URLs, and return an empty sitemap.
 
 Seven primary pages enter the sitemap when the publication configuration is complete, including the interactive Coast FIRE by Age comparison. DMCA, terms and refunds are supplementary noindex utility pages retained for the starter's policy requirements. No account or payment API is active. The upstream templates/ai-site directory retains the original template sources.
 
@@ -36,5 +36,3 @@ Retirement-only crossings explicitly have zero pre-retirement Coast years. Progr
 Spending can be entered per month or year; the model annualizes it. Contributions default to fixed nominal dollars, with an optional monthly inflation-indexed mode preserving the entered buying power from the first deposit. Negative inflation lowers nominal deposits. Forward, inverse, scenarios and remedies share the same mode.
 
 Optional Excel downloads and print/save-PDF output include normalized inputs, assumptions, selected mode, results and yearly projections. They create a copy only on explicit user action, with no upload, browser storage or automatic restore. Privacy and methodology explain these actions.
-
-No indexable metadata or sitemap entries are enabled unless domain, contact email and operator all pass configuration validation. The same validation protects the deploy command. The actual contact channel and operator remain blank at the owner's request: this is still a release-preparation gap, not proof of a working feedback channel. Test fixtures are not deployed operator identities.
