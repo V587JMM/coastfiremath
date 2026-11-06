@@ -12,6 +12,8 @@ The homepage places plan export beside the title on larger screens and beneath t
 
 The By Age tool shares the site palette and typography. Keep editable assumptions beside the comparison table on desktop, then stack them above the table on phones. Emphasize the Coast amount column. The homepage retains a fixed example and links to the editable comparison.
 
+Keep the calculator above the age explanations. Use the existing article typography for the reading sections and let comparison table text wrap to fit phones. The two share images use the existing navy, teal and sunrise palette.
+
 The user requested more character after the initial ledger design. Current direction: taste-skill Pastel consumer, seed 180175363 (see project .taste-skill/visual-direction). Retain the no-sidebar shell: this public calculator has only two primary destinations and needs its width. Use locally loaded Manrope with semibold tabular money figures, white list/form panels, 20px outer card radii and 10px controls. Adapt the dealt pastel proportions to a sage savings horizon: stone ground, pale sage data tiles with dark green ink, one green investment series, neutral comparisons. No gradients, shadows or new external services.
 
 Idea: the computed crossover is a horizon between active contributions and investment-only growth. The dominant threshold tile is paired with the actual milestone age; an accurately proportioned contribute/Coast phase strip extends that same idea under the chart. Zero Coast duration remains zero, not a decorative stub. Age, contributions and cash-flow assumptions retain their existing meaning.
@@ -31,7 +33,7 @@ Grid: centered 1200px canvas; 352px inputs + 16px gutter + remaining result colu
 
 Sample: age 32, retirement 65, investments $150,000, annual portfolio-funded spending $48,000, monthly nominal deposit $1,500. Illustrative assumptions: 7% nominal return, 3% inflation, 4% withdrawal. These are editable demonstration assumptions, not a forecast or a recommended asset allocation. Lower/higher nominal return scenarios shift by two percentage points; no probabilities implied.
 
-Financial fields stay in React memory; no persistence, URL serialization, third-party analytics, ads or remote fonts. Geist is served locally. Domain/contact/owner remain unconfigured at the user's request; preview is noindex. Launch check requires their real values.
+Financial fields stay in React memory and do not enter URLs or analytics events. The production domain loads site analytics through Google Tag Manager. Fonts are served locally. The launch check requires valid domain, contact and operator values.
 
 ## Result clarity and target-age planning
 

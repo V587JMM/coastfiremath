@@ -32,10 +32,16 @@ function Page() {
       </p>
       <h2>Cookies, statistics and advertising</h2>
       <p>
-        This version installs no analytics or advertising scripts and sets no application cookies. Fonts are
-        served by this site. Standard requests for pages and assets still reach the hosting provider; the
-        provider may process IP addresses, request paths, timestamps and technical information in its
-        operational logs. Financial input values are not included in those requests.
+        On coastfiremath.com, we use Google Tag Manager to load site analytics. When Google Analytics is
+        enabled, it may use cookies to measure page visits and receive page URLs, referrers and browser or
+        device information. The calculator does not send your inputs or estimates as analytics events. You can
+        manage analytics cookies in your browser or use the{' '}
+        <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out add-on</a>.
+      </p>
+      <p>
+        Fonts are served by this site. Our hosting provider may process IP addresses, request paths,
+        timestamps and technical information in operational logs when serving pages and assets. Those requests
+        do not include financial input values.
       </p>
       <h2>Contact and changes</h2>
       <p>
@@ -44,9 +50,7 @@ function Page() {
         <Link to="/contact/">contact page</Link> for channel availability.
       </p>
       <p>
-        Before introducing statistics, ads or other data-processing services, this policy must be updated to
-        identify their handling of data and any applicable choices. The current operator’s available identity
-        details are on <Link to="/about/">About</Link>.
+        The current operator’s available identity details are on <Link to="/about/">About</Link>.
       </p>
     </Article>
   );

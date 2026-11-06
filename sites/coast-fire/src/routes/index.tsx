@@ -249,14 +249,14 @@ function Calculator() {
       <div className="calculator-grid">
         <section className="inputs-panel" id="starting-point" aria-labelledby="input-heading">
           <div className="panel-heading">
-            <h2 id="input-heading">Your starting point</h2>
+            <h2 id="input-heading">Your Coast FIRE number</h2>
             <button className="text-button" type="button" onClick={reset}>
               Reset example ↺
             </button>
           </div>
           <p className="sample-notice">
             {sample
-              ? 'Replace the example ages, investments, spending and monthly savings to see your Coast FIRE target and timeline update.'
+              ? 'Your starting point is the example below. Replace the ages, investments, spending and monthly savings to update your Coast FIRE number and timeline.'
               : 'Your inputs stay in this tab. Nothing is uploaded.'}
           </p>
           <div className="age-fields">{fields.slice(0, 2).map(field)}</div>
@@ -316,7 +316,7 @@ function Calculator() {
               <Summary r={r} v={v} sample={sample} onEdit={editAssumptions} onApply={applyMonthly} />
               <div className="chart-block">
                 <div className="panel-heading">
-                  <h2>Your path to retirement</h2>
+                  <h2>When can you coast?</h2>
                   <span className="fine">Hypothetical growth</span>
                 </div>
                 <Projection result={r} age={v.age} retirementAge={v.retirementAge} />
@@ -440,7 +440,7 @@ function Calculator() {
       )}
       <div className="education-grid">
         <section className="age-reference">
-          <h2>Time changes your number.</h2>
+          <h2>Coast FIRE numbers by age</h2>
           <p>With positive real growth, more years to compound lower the Coast number.</p>
           <AgeTable
             rows={exampleAgeRows}
@@ -452,9 +452,9 @@ function Calculator() {
           </p>
         </section>
         <section className="method-block">
-          <h2>The math, made visible.</h2>
+          <h2>How to calculate Coast FIRE</h2>
           <p>
-            Here’s how the opening example gets its Coast number at age {EXAMPLE.age}, with retirement at{' '}
+            Here’s how the opening example gets its Coast FIRE number at age {EXAMPLE.age}, with retirement at{' '}
             {EXAMPLE.retirementAge}. All amounts are in today’s dollars.
           </p>
           <div className="formula">
@@ -475,8 +475,8 @@ function Calculator() {
           </div>
           <h3>Consistent purchasing power</h3>
           <p>
-            The model uses the unrounded real return. The Coast number is the amount you’d need invested today
-            to reach the retirement target through growth alone.
+            The model uses the unrounded real return. The Coast FIRE number is the amount you’d need invested
+            today to reach the retirement target through growth alone.
           </p>
           <h3>Know the boundaries</h3>
           <p>
@@ -500,27 +500,39 @@ function Calculator() {
             [
               'Does Coast FIRE mean I can quit my job?',
               'It means you may be able to stop adding to retirement investments under your assumptions. You still need income for living costs until retirement. The calculator does not assess whether you can quit work today.',
+              '/what-is-coast-fire/',
+              'Read what Coast FIRE means',
             ],
             [
               'What if I contribute nothing each month?',
               'The monthly contribution can be zero. If your investments already clear the Coast threshold, you are coasting in this model. Otherwise zero contributions will not close the gap under the same fixed assumptions.',
+              '/coast-fire-calculator-by-age/',
+              'Compare balances needed by age',
             ],
             [
               'Is the 4% withdrawal rate guaranteed?',
               'No. It is an editable planning assumption used to convert spending into a target. This tool does not simulate retirement withdrawals, market crashes or the chance that a portfolio lasts a certain number of years.',
+              '/editorial-policy/',
+              'See the model’s assumptions',
             ],
             [
               'Why does my number differ from another calculator?',
               'Compare real versus nominal return, retirement age, spending, withdrawal rate, contribution timing and whether Social Security is included. Contributions default to fixed dollars. The optional inflation adjustment keeps their purchasing power constant and changes the result.',
+              '/editorial-policy/',
+              'Review the calculation methodology',
             ],
             [
               'Are my financial details saved?',
               'Not automatically. Inputs stay in page memory, with no upload or browser storage. You may download an Excel plan or print/save a PDF on your device. Reloading restores the example, but does not delete copies you chose to keep.',
+              '/privacy/',
+              'Read the privacy policy',
             ],
-          ].map(([q, a]) => (
+          ].map(([q, a, to, label]) => (
             <details key={q}>
               <summary>{q}</summary>
-              <p>{a}</p>
+              <p>
+                {a} <Link to={to}>{label}</Link>.
+              </p>
             </details>
           ))}
         </div>

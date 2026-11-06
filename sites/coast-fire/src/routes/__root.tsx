@@ -2,6 +2,17 @@ import { createRootRoute, HeadContent, Link, Outlet, Scripts } from '@tanstack/r
 import type { ReactNode } from 'react';
 import css from '~/site/styles.css?url';
 import visualCss from '~/site/visual.css?url';
+
+const tagManagerScript = `(() => {
+  if (window.location.origin !== 'https://coastfiremath.com') return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-5ZJXLPWZ';
+  document.head.appendChild(script);
+})();`;
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [{ charSet: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
@@ -28,6 +39,7 @@ function Document({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {import.meta.env.PROD && <script id="coast-fire-tag-manager">{tagManagerScript}</script>}
       </head>
       <body>
         <a className="skip" href="#main">

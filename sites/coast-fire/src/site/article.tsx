@@ -1,6 +1,16 @@
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
-export function Article({ title, intro, children }: { title: string; intro: string; children: ReactNode }) {
+export function Article({
+  title,
+  intro,
+  updated = 'November 5, 2026',
+  children,
+}: {
+  title: string;
+  intro: string;
+  updated?: string;
+  children: ReactNode;
+}) {
   return (
     <article className="article">
       <Link to="/" className="back-link">
@@ -10,7 +20,7 @@ export function Article({ title, intro, children }: { title: string; intro: stri
       <p className="article-intro">{intro}</p>
       <div className="article-body">{children}</div>
       <p className="review-date">
-        Updated November 5, 2026 · <Link to="/editorial-policy/">Our methodology</Link>
+        Updated {updated} · <Link to="/editorial-policy/">Our methodology</Link>
       </p>
     </article>
   );

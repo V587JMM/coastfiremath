@@ -19,9 +19,9 @@ The upstream generic check-site expects AI billing, auth and a configured email;
 ## Data and assumptions
 
 Results include an always-visible assumptions summary and a target-age planner. Choose a Coast age to estimate a fixed nominal monthly contribution, then apply the rounded-up amount to the main calculator. Mobile input editing shows a compact result dock with a return-to-result action. All these interactions run locally.
-Inputs exist in React memory only. Nothing persists on reload, enters a URL or is submitted. No analytics, advertising or external fonts are loaded. Example rates are illustrative, independently editable, and not investment forecasts. Exact real-return conversion; effective monthly compounding; fixed nominal deposits at month-end; deposits cease after the moving Coast threshold is reached. All displayed projections use today's dollars. Smooth scenarios are not risk simulations.
+Calculator inputs exist in React memory only. They do not persist on reload, enter a URL or get submitted. Example rates are illustrative, independently editable, and not investment forecasts. Exact real-return conversion; effective monthly compounding; fixed nominal deposits at month-end; deposits cease after the moving Coast threshold is reached. All displayed projections use today's dollars. Smooth scenarios are not risk simulations.
 
-Before adding analytics or ads, update privacy and verify financial input values are never transmitted. Real author details, editorial review, production domain and contact information must be finalized before public launch. Do not claim professional credentials or historical performance.
+Production pages on `https://coastfiremath.com` load the Google Tag Manager container. Configure and publish a Google tag with the GA4 measurement ID in that container to collect traffic data. Keep calculator inputs and results out of tag variables, triggers and events. Use Tag Assistant and GA4 Realtime to check the published setup.
 
 Template source revision: shipwords-dev/shipwords 31d00ca (MIT). Outfit and DM Sans are self-hosted with their SIL Open Font Licenses in public/fonts/. The header wordmark and favicon are web derivatives of the supplied CoastFireMath logo.
 

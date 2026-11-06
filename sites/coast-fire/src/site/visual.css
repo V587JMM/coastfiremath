@@ -774,6 +774,38 @@ tbody td {
   margin-top: 10px;
   color: var(--muted);
 }
+.age-guide {
+  max-width: 70ch;
+}
+.article-body:has(.content-table) p {
+  max-width: 66ch;
+  font-size: 16px;
+  line-height: 1.65;
+}
+.age-guide section + section {
+  margin-top: 40px;
+}
+.article-body h3 {
+  font-size: 17px;
+  margin: 20px 0 6px;
+}
+.content-table {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+.content-table table {
+  table-layout: fixed;
+}
+.content-table :is(th, td) {
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.content-table :is(th, td):first-child {
+  width: 26%;
+}
 @media (max-width: 760px) {
   .by-age-grid {
     grid-template-columns: minmax(0, 1fr);

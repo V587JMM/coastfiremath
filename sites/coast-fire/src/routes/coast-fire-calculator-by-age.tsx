@@ -2,15 +2,34 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { type CoastAssumptions, coastAgeRows, EXAMPLE, validate } from '~/lib/calculator';
 import { head } from '~/lib/seo';
+import { AgeGuide, ageFaq } from '~/site/age-guide';
 import { AgeTable } from '~/site/age-table';
+import { faqSchema } from '~/site/content-faq';
+import site from '../../site.config';
+
+const path = '/coast-fire-calculator-by-age/';
+const description =
+  'Compare Coast FIRE numbers from age 25 to 60. Adjust retirement age, spending, return, inflation and withdrawal rate to see the savings target at each age.';
 
 export const Route = createFileRoute('/coast-fire-calculator-by-age')({
   head: () =>
-    head(
-      'Coast FIRE Calculator by Age — Compare Savings Targets',
-      'Compare Coast FIRE numbers from age 25 to 60. Adjust retirement age, spending, return, inflation and withdrawal rate to see the savings target at each age.',
-      '/coast-fire-calculator-by-age/',
-    ),
+    head('Coast FIRE Calculator by Age — Compare Savings Targets', description, path, false, false, {
+      image: '/share/coast-fire-by-age.png',
+      jsonLd: [
+        {
+          '@type': 'WebApplication',
+          name: 'Coast FIRE Calculator by Age',
+          description,
+          url: `${site.url}${path}`,
+          image: `${site.url}/share/coast-fire-by-age.png`,
+          applicationCategory: 'FinanceApplication',
+          operatingSystem: 'Any',
+          isAccessibleForFree: true,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        },
+        faqSchema(ageFaq),
+      ],
+    }),
   component: ByAge,
 });
 
@@ -132,6 +151,7 @@ function ByAge() {
           <Link to="/editorial-policy/">calculation methodology</Link> for the formulas and assumptions.
         </p>
       </section>
+      <AgeGuide />
     </div>
   );
 }

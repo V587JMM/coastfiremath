@@ -56,7 +56,7 @@ export type CoastAssumptions = Pick<
   'retirementAge' | 'spending' | 'nominal' | 'inflation' | 'withdrawal'
 >;
 
-function coastRequirements(v: CoastAssumptions, age: number) {
+export function coastRequirements(v: CoastAssumptions, age: number) {
   const real = (1 + v.nominal / 100) / (1 + v.inflation / 100) - 1;
   const target = v.spending / (v.withdrawal / 100);
   const coast = target / (1 + real) ** (v.retirementAge - age);
