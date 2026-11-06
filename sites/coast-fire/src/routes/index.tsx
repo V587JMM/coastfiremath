@@ -540,7 +540,7 @@ function Calculator() {
       <div className="bottom-note">
         <p>Built for clarity. Your assumptions, your perspective.</p>
         <span>
-          Updated November 5, 2026 · <Link to="/about/">About this project</Link>
+          Updated November 6, 2026 · <Link to="/about/">About this project</Link>
         </span>
       </div>
       <MobileResultLink result={r} age={v.age} />

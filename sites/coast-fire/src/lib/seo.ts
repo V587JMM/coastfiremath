@@ -1,14 +1,21 @@
-import { pageHead } from '@shipwords/core/seo';
+import { pageHead, type SitemapEntry } from '@shipwords/core/seo';
 import site, { configured } from '../../site.config';
-export const pages = [
-  '/',
-  '/coast-fire-calculator-by-age/',
-  '/what-is-coast-fire/',
-  '/about/',
-  '/editorial-policy/',
-  '/privacy/',
-  '/contact/',
+
+export const guideLastModified = '2026-11-06';
+
+// Include only canonical, indexable pages. Update lastmod for meaningful page changes.
+export const sitemapEntries: SitemapEntry[] = [
+  { path: '/', lastmod: '2026-11-06' },
+  { path: '/what-is-coast-fire/', lastmod: guideLastModified },
+  { path: '/coast-fire-calculator-by-age/', lastmod: '2026-11-06' },
+  { path: '/about/' },
+  { path: '/editorial-policy/' },
 ];
+
+export function canonicalUrl(path: string) {
+  return new URL(path, site.url).href;
+}
+
 export function head(
   title: string,
   description: string,
@@ -46,7 +53,14 @@ export function head(
       if (meta.property === 'og:type') meta.content = 'article';
     }
   }
-  if (!configured) {
+  if (configured) {
+    const url = canonicalUrl(path);
+    data.links = [{ rel: 'canonical', href: url }];
+    for (const meta of data.meta) {
+      if (meta.property === 'og:url') meta.content = url;
+    }
+    if (!noindex) data.meta.push({ name: 'robots', content: 'index, follow' });
+  } else {
     data.links = [];
     data.meta = data.meta.filter((m) => m.property !== 'og:url');
   }

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { coastRequirements, dollars, EXAMPLE } from '~/lib/calculator';
-import { head } from '~/lib/seo';
+import { guideLastModified, head } from '~/lib/seo';
 import { Article } from '~/site/article';
 import { ContentFaq, faqSchema } from '~/site/content-faq';
 import site, { operator } from '../../site.config';
@@ -41,7 +41,7 @@ export const Route = createFileRoute('/what-is-coast-fire')({
           description,
           mainEntityOfPage: `${site.url}${path}`,
           image: `${site.url}${image}`,
-          dateModified: '2026-11-06',
+          dateModified: guideLastModified,
           author: { '@type': 'Organization', name: operator, url: `${site.url}/about/` },
         },
         faqSchema(questions),
