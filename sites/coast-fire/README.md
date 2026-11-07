@@ -10,7 +10,9 @@ From the ShipWords workspace: `npx --yes pnpm@10.30.1 install`, then `npx --yes 
 
 ## Publishing configuration
 
-Set `VITE_PUBLIC_SITE_URL` (the HTTPS origin without a trailing slash), `VITE_CONTACT_EMAIL`, and `VITE_OPERATOR_NAME` in Cloudflare Workers **Settings → Build → Build Variables and Secrets**. Vite reads these public values during the build, so start a fresh build after setting them. Use `pnpm run deploy` from `sites/coast-fire` for production. It checks these values before building and publishing the Worker. Builds without valid settings send noindex and robots disallow, omit canonical URLs, and return an empty sitemap.
+Set `VITE_PUBLIC_SITE_URL` (the HTTPS origin without a trailing slash), `VITE_CONTACT_EMAIL`, and `VITE_OPERATOR_NAME` in Cloudflare Workers **Settings → Build → Build Variables and Secrets**. Vite reads these public values during the build, so start a fresh build after setting them. Use `pnpm run deploy` from `sites/coast-fire` for production. It checks these values before building and publishing the Worker. Builds without valid settings send noindex, omit canonical URLs, and return an empty sitemap.
+
+Workers Builds on `main` also checks the publication configuration before building. The Worker allows crawling in `/robots.txt` and advertises the sitemap when the publication configuration is complete. For the public domain to serve this file directly, turn off Cloudflare Bot Preference Sync for the zone. Verify the public response after deployment because the zone can prepend its own rules.
 
 The sitemap lists five pages when the publication configuration is complete: the homepage, Coast FIRE guide, By Age comparison, About and Editorial Policy. DMCA, terms and refunds are supplementary noindex utility pages retained for the starter's policy requirements. No account or payment API is active. The upstream templates/ai-site directory retains the original template sources.
 

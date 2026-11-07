@@ -7,7 +7,7 @@ export const Route = createFileRoute('/robots.txt')({
       GET: () =>
         configured
           ? robotsTxt(site)
-          : new Response('User-agent: *\nDisallow: /\n', {
+          : new Response('User-agent: *\nAllow: /\n', {
               headers: { 'content-type': 'text/plain; charset=utf-8' },
             }),
     },
