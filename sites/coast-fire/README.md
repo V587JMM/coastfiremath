@@ -14,7 +14,7 @@ Set `VITE_PUBLIC_SITE_URL` (the HTTPS origin without a trailing slash), `VITE_CO
 
 Workers Builds on `main` also checks the publication configuration before building. The Worker allows crawling in `/robots.txt` and advertises the sitemap when the publication configuration is complete. For the public domain to serve this file directly, turn off Cloudflare Bot Preference Sync for the zone. Verify the public response after deployment because the zone can prepend its own rules.
 
-The sitemap lists five pages when the publication configuration is complete: the homepage, Coast FIRE guide, By Age comparison, About and Editorial Policy. DMCA, terms and refunds are supplementary noindex utility pages retained for the starter's policy requirements. No account or payment API is active. The upstream templates/ai-site directory retains the original template sources.
+The `/sitemap.xml` route renders the list in `src/lib/seo.ts` when the publication configuration is complete: the homepage, Coast FIRE guide, By Age comparison, About, Editorial Policy, Privacy and Contact. DMCA, terms and refunds are supplementary noindex utility pages retained for the starter's policy requirements. No account or payment API is active. The upstream templates/ai-site directory retains the original template sources.
 
 The upstream generic check-site expects AI billing, auth and a configured email; it is a launch check for the original paid-AI template. This browser-only site's check uses TypeScript, calculation tests, production build and browser verification instead; shared checks are unchanged. Domain/email are still enforced by launch-check.mjs.
 

@@ -12,6 +12,8 @@ export const sitemapEntries: SitemapEntry[] = [
   { path: '/coast-fire-calculator-by-age/', lastmod: '2026-11-06' },
   { path: '/about/' },
   { path: '/editorial-policy/', lastmod: methodologyLastModified },
+  { path: '/privacy/' },
+  { path: '/contact/' },
 ];
 
 export function canonicalUrl(path: string) {
