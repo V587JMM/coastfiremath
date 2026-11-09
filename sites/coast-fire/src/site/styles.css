@@ -1078,7 +1078,6 @@ caption {
     display: contents;
   }
   .summary {
-    order: 0;
     width: 100%;
     background: white;
     border: 1px solid var(--line);
@@ -1086,12 +1085,10 @@ caption {
     padding: 20px;
   }
   .inputs-panel {
-    order: 1;
     width: 100%;
     padding: 20px;
   }
   .chart-block {
-    order: 2;
     background: white;
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -1099,7 +1096,6 @@ caption {
     width: 100%;
   }
   .error-panel {
-    order: 0;
     background: white;
     border: 1px solid var(--line);
     border-radius: 8px;

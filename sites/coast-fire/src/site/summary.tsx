@@ -5,13 +5,13 @@ import { CatchUp } from './catch-up';
 export function Summary({
   r,
   v,
-  sample,
+  exampleName,
   onEdit,
   onApply,
 }: {
   r: Result;
   v: Inputs;
-  sample: boolean;
+  exampleName?: string;
   onEdit: () => void;
   onApply: (monthly: number) => void;
 }) {
@@ -27,7 +27,7 @@ export function Summary({
   return (
     <div className="summary" id="coast-result" tabIndex={-1} aria-live="polite" aria-atomic="true">
       <div className="result-heading">
-        <span>{sample ? 'Example result' : 'Your estimate'}</span>
+        <span>{exampleName ? `Example · ${exampleName}` : 'Your estimate'}</span>
         <span>In today’s dollars</span>
       </div>
       <p className="result-state">

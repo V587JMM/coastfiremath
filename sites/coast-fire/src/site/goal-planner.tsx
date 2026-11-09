@@ -25,9 +25,10 @@ export function GoalPlanner({
   return (
     <section className="goal-planner" id="goal-planner" aria-labelledby="goal-heading">
       <div className="goal-intro">
-        <h2 id="goal-heading">Choose when to coast.</h2>
+        <h2 id="goal-heading">Monthly Savings Needed to Reach Coast FIRE</h2>
         <p>
-          Work backward from an age. Find the monthly saving needed under the inputs and assumptions above.
+          Choose the age you want to stop contributing. We’ll estimate how much to invest each month using the
+          assumptions above.
         </p>
       </div>
       <div className="goal-controls">

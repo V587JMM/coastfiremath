@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { type ChangeEvent, useState } from 'react';
+import { type ChangeEvent, useRef, useState } from 'react';
 import {
   ageLabel,
   type ContributionMode,
@@ -26,8 +26,8 @@ import { contactEmail, operator } from '../../site.config';
 export const Route = createFileRoute('/')({
   head: () =>
     head(
-      'Coast FIRE Calculator — Your Number & When You Can Coast',
-      'Find your Coast FIRE number, savings gap and estimated coast age. Compare return scenarios in today’s dollars with a free, private US calculator.',
+      'Free Coast FIRE Calculator | Inflation-Adjusted Planning',
+      'Use this free Coast FIRE calculator to find your number, plan monthly savings for a target age, and compare inflation-adjusted return scenarios privately.',
       '/',
       true,
     ),
@@ -110,16 +110,61 @@ const fields: {
 const exampleResult = calculate(EXAMPLE);
 const exampleAgeRows = coastAgeRows(EXAMPLE);
 
+type ExamplePlan = {
+  name: string;
+  inputs: Inputs;
+  goalAge: number;
+  contributionMode: ContributionMode;
+};
+const openingPlan: ExamplePlan = {
+  name: 'Steady saver',
+  inputs: EXAMPLE,
+  goalAge: 45,
+  contributionMode: 'fixed',
+};
+const examplePlans: ExamplePlan[] = [
+  openingPlan,
+  {
+    name: 'Starting early',
+    inputs: { ...EXAMPLE, age: 25, balance: 25000, spending: 42000, monthly: 750 },
+    goalAge: 45,
+    contributionMode: 'inflation',
+  },
+  {
+    name: 'Already coasting',
+    inputs: { ...EXAMPLE, age: 45, balance: 650000, monthly: 0 },
+    goalAge: 50,
+    contributionMode: 'fixed',
+  },
+  {
+    name: 'Pausing contributions',
+    inputs: { ...EXAMPLE, age: 40, balance: 180000, monthly: 0 },
+    goalAge: 55,
+    contributionMode: 'fixed',
+  },
+];
+
+type InputValues = Record<keyof Inputs, string>;
+type PlanDraft = {
+  values: InputValues;
+  goalAge: string;
+  goalAdjustment: string;
+  spendingPeriod: SpendingPeriod;
+  contributionMode: ContributionMode;
+};
+
+function toInputValues(inputs: Inputs) {
+  return Object.fromEntries(
+    Object.entries(inputs).map(([key, value]) => [key, String(value)]),
+  ) as InputValues;
+}
+
 function Calculator() {
-  const [values, setValues] = useState<Record<keyof Inputs, string>>(
-    () =>
-      Object.fromEntries(Object.entries(EXAMPLE).map(([k, v]) => [k, String(v)])) as Record<
-        keyof Inputs,
-        string
-      >,
-  );
-  const [sample, setSample] = useState(true);
-  const [goalAge, setGoalAge] = useState('45');
+  const [values, setValues] = useState(() => toInputValues(openingPlan.inputs));
+  const [example, setExample] = useState<ExamplePlan | null>(openingPlan);
+  const [savedDraft, setSavedDraft] = useState<PlanDraft | null>(null);
+  const examplePicker = useRef<HTMLDetailsElement>(null);
+  const [goalAge, setGoalAge] = useState(String(openingPlan.goalAge));
   const [goalAdjustment, setGoalAdjustment] = useState('');
   const [spendingPeriod, setSpendingPeriod] = useState<SpendingPeriod>('year');
   const [contributionMode, setContributionMode] = useState<ContributionMode>('fixed');
@@ -144,20 +189,33 @@ function Calculator() {
         );
       }
     }
-    setSample(false);
+    setExample(null);
   }
-  function reset() {
-    setValues(
-      Object.fromEntries(Object.entries(EXAMPLE).map(([k, n]) => [k, String(n)])) as Record<
-        keyof Inputs,
-        string
-      >,
-    );
-    setSample(true);
-    setGoalAge('45');
+  function loadExample(plan: ExamplePlan) {
+    if (!example && !savedDraft) {
+      setSavedDraft({ values, goalAge, goalAdjustment, spendingPeriod, contributionMode });
+    }
+    setValues(toInputValues(plan.inputs));
+    setExample(plan);
+    setGoalAge(String(plan.goalAge));
     setGoalAdjustment('');
     setSpendingPeriod('year');
-    setContributionMode('fixed');
+    setContributionMode(plan.contributionMode);
+    if (examplePicker.current) {
+      examplePicker.current.open = false;
+      examplePicker.current.querySelector('summary')?.focus();
+    }
+  }
+  function restoreDraft() {
+    if (!savedDraft) return;
+    setValues(savedDraft.values);
+    setExample(null);
+    setGoalAge(savedDraft.goalAge);
+    setGoalAdjustment(savedDraft.goalAdjustment);
+    setSpendingPeriod(savedDraft.spendingPeriod);
+    setContributionMode(savedDraft.contributionMode);
+    setSavedDraft(null);
+    examplePicker.current?.querySelector('summary')?.focus();
   }
   function switchSpendingPeriod(next: SpendingPeriod) {
     if (next === spendingPeriod) return;
@@ -169,6 +227,7 @@ function Calculator() {
           : String(convertSpending(Number(previous.spending), spendingPeriod, next)),
     }));
     setSpendingPeriod(next);
+    setExample(null);
   }
   function editAssumptions() {
     const details = document.querySelector<HTMLDetailsElement>('.assumptions');
@@ -178,7 +237,7 @@ function Calculator() {
   }
   function applyMonthly(monthly: number) {
     setValues((previous) => ({ ...previous, monthly: String(monthly) }));
-    setSample(false);
+    setExample(null);
   }
   function field(f: (typeof fields)[number]) {
     const rate = f.suffix === '%';
@@ -239,10 +298,10 @@ function Calculator() {
     <div className="calculator-page">
       <div className="page-title calculator-title">
         <div>
-          <h1>Coast FIRE calculator</h1>
+          <h1>Free Coast FIRE Calculator with Inflation-Adjusted Planning</h1>
           <p className="coast-intro">
-            Coast FIRE is when your investments could grow enough to fund retirement without further
-            contributions. You still need to cover living costs until retirement.
+            Enter your numbers to see when you could stop saving for retirement. Compare returns or find the
+            monthly savings for your target Coast age.
           </p>
         </div>
         <PlanActions inputs={v} result={r} goalAge={goalAge} period={spendingPeriod} />
@@ -251,15 +310,45 @@ function Calculator() {
         <section className="inputs-panel" id="starting-point" aria-labelledby="input-heading">
           <div className="panel-heading">
             <h2 id="input-heading">Your Coast FIRE number</h2>
-            <button className="text-button" type="button" onClick={reset}>
-              Reset example ↺
-            </button>
           </div>
           <p className="sample-notice">
-            {sample
-              ? 'Your starting point is the example below. Replace the ages, investments, spending and monthly savings to update your Coast FIRE number and timeline.'
+            {example
+              ? `Example: ${example.name}. Edit any field to use your own numbers.`
               : 'Your inputs stay in this tab. Nothing is uploaded.'}
           </p>
+          <details className="example-picker" ref={examplePicker}>
+            <summary>Try an example</summary>
+            <p className="fine">Load a sample plan to fill in the calculator and see its results.</p>
+            <ul>
+              {examplePlans.map((plan) => (
+                <li key={plan.name}>
+                  <button
+                    className="example-option"
+                    type="button"
+                    aria-label={
+                      plan === example ? `${plan.name} example loaded` : `Load ${plan.name} example`
+                    }
+                    disabled={plan === example}
+                    onClick={() => loadExample(plan)}
+                  >
+                    <span>
+                      <strong>{plan.name}</strong>
+                      <small>
+                        Age {plan.inputs.age} · {dollars(plan.inputs.balance)} invested ·{' '}
+                        {dollars(plan.inputs.monthly)}/mo
+                      </small>
+                    </span>
+                    <span>{plan === example ? 'Loaded' : 'Load'}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </details>
+          {savedDraft && (
+            <button className="text-button restore-inputs" type="button" onClick={restoreDraft}>
+              Restore my inputs
+            </button>
+          )}
           <div className="age-fields">{fields.slice(0, 2).map(field)}</div>
           {field(fields[2]!)}
           <fieldset className="spending-period">
@@ -288,7 +377,7 @@ function Calculator() {
               checked={contributionMode === 'inflation'}
               onChange={(event) => {
                 setContributionMode(event.target.checked ? 'inflation' : 'fixed');
-                setSample(false);
+                setExample(null);
               }}
             />
             <span>Adjust contributions with inflation</span>
@@ -308,16 +397,22 @@ function Calculator() {
           </details>
           <p className="input-footnote">US dollars. One person. No Social Security or tax calculation.</p>
           <button type="button" className="mobile-view-result" onClick={viewResult}>
-            {r ? 'View updated result ↑' : 'Check input issues ↑'}
+            {r ? 'View updated result' : 'Check input issues'}
           </button>
         </section>
         <section className="results-panel" aria-label="Calculation results">
           {r ? (
             <>
-              <Summary r={r} v={v} sample={sample} onEdit={editAssumptions} onApply={applyMonthly} />
+              <Summary
+                r={r}
+                v={v}
+                exampleName={example?.name}
+                onEdit={editAssumptions}
+                onApply={applyMonthly}
+              />
               <div className="chart-block">
                 <div className="panel-heading">
-                  <h2>When can you coast?</h2>
+                  <h2>When Can You Reach Coast FIRE?</h2>
                   <span className="fine">Hypothetical growth</span>
                 </div>
                 <Projection result={r} age={v.age} retirementAge={v.retirementAge} />
@@ -359,6 +454,7 @@ function Calculator() {
             onGoalAge={(value) => {
               setGoalAge(value);
               setGoalAdjustment('');
+              setExample(null);
             }}
             onApply={applyMonthly}
             mode={contributionMode}
@@ -366,7 +462,7 @@ function Calculator() {
           />
           <section className="scenario-section" aria-labelledby="scenario-title">
             <div className="section-intro">
-              <h2 id="scenario-title">See how returns move your date.</h2>
+              <h2 id="scenario-title">How Investment Returns Affect Your Coast FIRE Age</h2>
               <p>
                 One assumption can move your milestone. These scenarios change nominal return only; they are
                 not probabilities.
@@ -484,25 +580,65 @@ function Calculator() {
             These are smooth-return estimates. They exclude market volatility, taxes, account-access rules and
             automatic Social Security or pension estimates.
           </p>
-          <Link to="/editorial-policy/" className="arrow-link">
-            Read the complete methodology →
+          <Link to="/editorial-policy/" hash="calculation-validation" className="arrow-link">
+            Verify the calculations with worked examples →
           </Link>
         </section>
       </div>
-      <section className="faq-section">
+      <section className="faq-section" aria-labelledby="faq-heading">
         <div>
-          <h2>A few good questions.</h2>
+          <h2 id="faq-heading">Coast FIRE Calculator FAQs</h2>
           <p>
             New to the idea? <Link to="/what-is-coast-fire/">Start with the Coast FIRE guide →</Link>
           </p>
         </div>
         <div className="faq-list">
+          <details>
+            <summary>How much money do I need to Coast FIRE?</summary>
+            <p>
+              The amount depends on your planned retirement spending, current age, target retirement age,
+              expected return after inflation, and withdrawal rate.{' '}
+              <a href="#starting-point">Enter your assumptions in the calculator</a> to find how much you need
+              invested today.
+            </p>
+          </details>
+          <details>
+            <summary>How do I know if I’ve reached Coast FIRE?</summary>
+            <p>
+              Before retirement, you’ve reached Coast FIRE under the model’s assumptions when your current
+              retirement investments equal or exceed your Coast FIRE number.{' '}
+              <a href="#coast-result">Check your result</a> to see whether you’re already coasting or how much
+              more you’d need invested today.
+            </p>
+          </details>
           {[
             [
+              'What investment accounts should I include?',
+              'Add up the investments you’ve set aside for retirement, such as balances in a 401(k), traditional or Roth IRA, and taxable brokerage account. Leave out home equity, emergency savings, and money set aside for near-term expenses. The calculator uses a combined balance, so check each account’s withdrawal rules separately.',
+            ],
+            [
+              'Does this Coast FIRE calculator account for inflation?',
+              'Yes. It uses your return and inflation assumptions to show results in today’s dollars. Monthly deposits stay fixed in dollar terms by default, and you can turn on inflation adjustments to keep their purchasing power steady.',
+              '/editorial-policy/',
+              'See how the model adjusts for inflation',
+            ],
+            [
+              'What rate of return should I use?',
+              'Enter an estimated annual return for your mix of investments after fees and before inflation. The default is an example, and the lower-return scenario shows how a more cautious assumption could change your result.',
+            ],
+            [
+              'What should I include in retirement spending?',
+              'Include costs such as housing, food, healthcare, transportation, and occasional expenses like home repairs. Use today’s prices and enter the amount you expect your investments to cover, either per month or per year.',
+            ],
+            [
+              'Does the calculator include taxes and Social Security?',
+              'No. It doesn’t calculate taxes or estimate Social Security or pension income. Estimate those amounts separately, and include any taxes you expect your investments to cover in your spending budget.',
+            ],
+            [
               'Does Coast FIRE mean I can quit my job?',
-              'It means you may be able to stop adding to retirement investments under your assumptions. You still need income for living costs until retirement. The calculator does not assess whether you can quit work today.',
+              'Reaching Coast FIRE by itself doesn’t tell you whether you can afford to quit. It means you may be able to stop contributing to your retirement investments while covering living costs some other way. With full FIRE, your investments and other available income can cover those costs now without a paycheck.',
               '/what-is-coast-fire/',
-              'Read what Coast FIRE means',
+              'Compare Coast FIRE with full FIRE in the guide',
             ],
             [
               'What if I contribute nothing each month?',
@@ -512,19 +648,19 @@ function Calculator() {
             ],
             [
               'Is the 4% withdrawal rate guaranteed?',
-              'No. It is an editable planning assumption used to convert spending into a target. This tool does not simulate retirement withdrawals, market crashes or the chance that a portfolio lasts a certain number of years.',
+              'No. It’s an adjustable assumption used to turn spending into a retirement savings target. This tool does not simulate retirement withdrawals, market crashes, or how long your portfolio will last.',
               '/editorial-policy/',
               'See the model’s assumptions',
             ],
             [
               'Why does my number differ from another calculator?',
-              'Compare real versus nominal return, retirement age, spending, withdrawal rate, contribution timing and whether Social Security is included. Contributions default to fixed dollars. The optional inflation adjustment keeps their purchasing power constant and changes the result.',
+              'Check that both tools use the same retirement age, spending, withdrawal rate, and return after inflation. Differences in when contributions are added or how Social Security is treated can also change the estimate.',
               '/editorial-policy/',
               'Review the calculation methodology',
             ],
             [
               'Are my financial details saved?',
-              'Not automatically. Inputs stay in page memory, with no upload or browser storage. You may download an Excel plan or print/save a PDF on your device. Reloading restores the example, but does not delete copies you chose to keep.',
+              'Your inputs stay in this tab and aren’t uploaded or saved in browser storage. You can download an Excel plan or print or save a PDF on your device. Reloading restores the example, and any copies you saved stay on your device.',
               '/privacy/',
               'Read the privacy policy',
             ],
@@ -532,7 +668,13 @@ function Calculator() {
             <details key={q}>
               <summary>{q}</summary>
               <p>
-                {a} <Link to={to}>{label}</Link>.
+                {a}
+                {to && (
+                  <>
+                    {' '}
+                    <Link to={to}>{label}</Link>.
+                  </>
+                )}
               </p>
             </details>
           ))}
@@ -551,7 +693,7 @@ function Calculator() {
             the formulas and assumptions behind them.
           </p>
           <p>
-            Updated <time dateTime={homeLastModified}>November 7, 2026</time> ·{' '}
+            Updated <time dateTime={homeLastModified}>November 9, 2026</time> ·{' '}
             <Link to="/editorial-policy/">Methodology and editorial policy</Link>
           </p>
           <p>

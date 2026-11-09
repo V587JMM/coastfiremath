@@ -21,24 +21,32 @@ export function MobileResultLink({ result, age }: { result: Result | null; age: 
       document.getElementById('goal-planner'),
     ].filter((node): node is HTMLElement => node !== null);
     if (!summary || typeof IntersectionObserver === 'undefined') return;
+    const inputHeading = document.getElementById('input-heading');
     const goalAnswer = document.querySelector('.goal-answer');
     // Keep the planner estimate clear of the fixed dock and its touch target.
     const dockClearance = 100;
     const check = () => {
+      const resultBounds = summary.getBoundingClientRect();
+      const inputsInProgress = inputHeading && inputHeading.getBoundingClientRect().bottom <= 0;
       const answer = goalAnswer?.getBoundingClientRect();
       const wouldCoverAnswer =
         answer && answer.top < window.innerHeight && answer.bottom > window.innerHeight - dockClearance;
       setVisible(
         !wouldCoverAnswer &&
-          summary.getBoundingClientRect().bottom <= 0 &&
+          (resultBounds.bottom <= 0 || resultBounds.top >= window.innerHeight) &&
           editing.some((node) => {
             const rect = node.getBoundingClientRect();
-            return rect.bottom > 0 && rect.top < window.innerHeight;
+            return (
+              rect.bottom > 0 &&
+              rect.top < window.innerHeight &&
+              (node.id === 'goal-planner' || inputsInProgress)
+            );
           }),
       );
     };
     const observer = new IntersectionObserver(check, { threshold: [0, 1] });
     observer.observe(summary);
+    if (inputHeading) observer.observe(inputHeading);
     for (const node of editing) observer.observe(node);
     const clearanceObserver = new IntersectionObserver(check, {
       rootMargin: `0px 0px -${dockClearance}px 0px`,
@@ -78,7 +86,7 @@ export function MobileResultLink({ result, age }: { result: Result | null; age: 
         <strong>{estimate}</strong>
       </div>
       <button type="button" onClick={viewResult}>
-        {result === null ? 'View issues ↑' : 'View result ↑'}
+        {result === null ? 'View issues' : 'View result'}
       </button>
     </aside>
   );

@@ -29,7 +29,7 @@ Inventory: US single-person planning; today's-dollar results; fixed nominal mont
 
 Argument: input your situation → see the Coast gap and age → inspect the path and assumptions → compare return scenarios → understand age with a labeled fixed-reference table → inspect formulas and boundaries → read the guide and methodology.
 
-Grid: centered 1200px canvas; 352px inputs + 16px gutter + remaining result column. Result and chart share one container. Mobile puts the short result summary before the input form; full projection follows it. No hover-only information; keyboard-accessible native fields, details and buttons.
+Grid: centered 1200px canvas; inputs and results sit side by side on desktop. On narrow screens, show editable inputs first, then the result summary and the full projection. Use keyboard-accessible native fields, details and buttons.
 
 Sample: age 32, retirement 65, investments $150,000, annual portfolio-funded spending $48,000, monthly nominal deposit $1,500. Illustrative assumptions: 7% nominal return, 3% inflation, 4% withdrawal. These are editable demonstration assumptions, not a forecast or a recommended asset allocation. Lower/higher nominal return scenarios shift by two percentage points; no probabilities implied.
 
@@ -37,9 +37,11 @@ Financial fields stay in React memory and do not enter URLs or analytics events.
 
 ## Result clarity and target-age planning
 
-Nominal return, inflation and withdrawal assumptions stay visible beside the main result, with an Edit assumptions control that opens the settings and focuses nominal return. Mobile editing provides an inline return-to-result button and a compact live result dock while the inputs or goal planner are on screen and the full result is above the viewport. The dock hides at the result and footer. It respects safe-area insets and reduced motion; returning to the result also moves keyboard focus.
+Nominal return, inflation and withdrawal assumptions stay visible beside the main result, with an Edit assumptions control that opens the settings and focuses nominal return. Mobile editing provides an inline link to the result and a compact live result dock once the input heading scrolls offscreen or while the goal planner is in view. The dock hides while the result is visible and when the reader leaves the calculator. It respects safe-area insets and reduced motion, and its button moves keyboard focus to the result.
 
-The target-age planner is a separate hypothetical calculation until its monthly amount is applied. A whole-number Coast age ranges from current age to full retirement age. It solves for constant nominal month-end deposits using the same effective monthly growth and inflation factors as the main model. Amounts round up to whole dollars. Already-coasting, immediate-gap, invalid-age and above-input-limit states have explicit copy. Reset restores both the example and target age 45. No inputs are persisted or transmitted.
+The target-age planner is a separate hypothetical calculation until its monthly amount is applied. A whole-number Coast age ranges from current age to full retirement age. It solves for constant nominal month-end deposits using the same effective monthly growth and inflation factors as the main model. Amounts round up to whole dollars. Already-coasting, immediate-gap, invalid-age and above-input-limit states have explicit copy.
+
+Keep example plans in a closed disclosure above the editable fields. The rows show the key inputs for each case and load only on explicit selection. The result identifies the example in use, and the calculator can restore the personal draft from before the examples were loaded. The opening example remains the reference for the formula and age table. No inputs are persisted or transmitted.
 
 ## Review corrections and actionable results
 
