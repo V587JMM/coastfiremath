@@ -13,7 +13,7 @@ import {
   type SpendingPeriod,
   validate,
 } from '~/lib/calculator';
-import { head } from '~/lib/seo';
+import { head, homeLastModified } from '~/lib/seo';
 import { AgeTable } from '~/site/age-table';
 import { GoalPlanner } from '~/site/goal-planner';
 import { MobileResultLink, viewResult } from '~/site/mobile-result-link';
@@ -21,6 +21,7 @@ import { PhaseTimeline } from '~/site/phase-timeline';
 import { PlanActions, PrintPlan } from '~/site/plan-actions';
 import { Projection } from '~/site/projection';
 import { Summary } from '~/site/summary';
+import { contactEmail, operator } from '../../site.config';
 
 export const Route = createFileRoute('/')({
   head: () =>
@@ -538,10 +539,57 @@ function Calculator() {
         </div>
       </section>
       <div className="bottom-note">
-        <p>Built for clarity. Your assumptions, your perspective.</p>
-        <span>
-          Updated November 6, 2026 · <Link to="/about/">About this project</Link>
-        </span>
+        <section aria-labelledby="editorial-heading">
+          <h2 id="editorial-heading">Who maintains this calculator?</h2>
+          <p>
+            {operator && (
+              <>
+                Maintained by <Link to="/about/">{operator}</Link>.{' '}
+              </>
+            )}
+            This independent project develops educational retirement calculators for US readers and documents
+            the formulas and assumptions behind them.
+          </p>
+          <p>
+            Updated <time dateTime={homeLastModified}>November 7, 2026</time> ·{' '}
+            <Link to="/editorial-policy/">Methodology and editorial policy</Link>
+          </p>
+          <p>
+            Report a calculation or wording error{' '}
+            {contactEmail ? (
+              <>
+                to <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+              </>
+            ) : (
+              <>
+                through the <Link to="/contact/">contact page</Link>.
+              </>
+            )}{' '}
+            Include the page URL and use sample amounts if needed to reproduce the issue.
+          </p>
+        </section>
+        <section aria-labelledby="official-sources-heading">
+          <h2 id="official-sources-heading">Official sources</h2>
+          <p>
+            Sources checked <time dateTime="2026-11-07">November 7, 2026</time>.
+          </p>
+          <ul>
+            <li>
+              <a href="https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator">
+                SEC Investor.gov’s compound interest calculator
+              </a>{' '}
+              shows how a starting balance and regular contributions grow at an assumed rate.
+            </li>
+            <li>
+              <a href="https://www.ssa.gov/retirement/full-retirement-age">SSA’s full retirement age guide</a>{' '}
+              explains Social Security benefit timing. Estimate those benefits separately.
+            </li>
+            <li>
+              <a href="https://www.irs.gov/publications/p590b">IRS Publication 590-B</a> explains IRA
+              withdrawals. Check account access and withdrawal taxes separately.
+            </li>
+          </ul>
+        </section>
       </div>
       <MobileResultLink result={r} age={v.age} />
       {r && <PrintPlan inputs={v} result={r} goalAge={goalAge} period={spendingPeriod} />}
