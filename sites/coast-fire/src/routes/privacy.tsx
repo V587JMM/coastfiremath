@@ -39,6 +39,12 @@ function Page() {
         <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out add-on</a>.
       </p>
       <p>
+        We also use PVUV.ai to measure visits and distinguish human traffic from bots. PVUV may receive page
+        URLs, referrers, browser and device details, and interaction signals. It uses first-party cookies and
+        may store a visitor identifier in your browser’s local storage. You can clear both in your browser
+        settings. See the <a href="https://www.pvuv.ai/privacy">PVUV.ai privacy policy</a> for details.
+      </p>
+      <p>
         Fonts are served by this site. Our hosting provider may process IP addresses, request paths,
         timestamps and technical information in operational logs when serving pages and assets. Those requests
         do not include financial input values.
