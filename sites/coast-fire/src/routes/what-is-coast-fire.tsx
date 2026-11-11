@@ -54,7 +54,7 @@ function Page() {
     <Article
       title="What is Coast FIRE?"
       intro="Fund retirement first. Then let time do more of the work."
-      updated="November 6, 2026"
+      updated="November 11, 2026"
     >
       {operator && (
         <p>
@@ -206,7 +206,8 @@ function Page() {
         assumption, while coasting changes how you get there. If you plan to combine part-time income with
         withdrawals before retirement, as in some Barista FIRE plans, you need a projection that tracks those
         cash flows. The Coast calculator assumes the retirement balance stays invested until the date you
-        select.
+        select. Use the <Link to="/barista-fire-calculator/">Barista FIRE calculator</Link> to model part-time
+        pay, the spending gap and the retirement target after that income ends.
       </p>
       <h2>A scenario is not a probability</h2>
       <p>

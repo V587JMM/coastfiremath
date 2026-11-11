@@ -150,6 +150,11 @@ function ByAge() {
           <Link to="/">Coast FIRE Calculator</Link>. See the{' '}
           <Link to="/editorial-policy/">calculation methodology</Link> for the formulas and assumptions.
         </p>
+        <p>
+          If you expect part-time pay to cover only some bills, try the{' '}
+          <Link to="/barista-fire-calculator/">Barista FIRE calculator</Link>. It includes portfolio
+          withdrawals before full retirement and compares $40k, $60k and $80k spending budgets by age.
+        </p>
       </section>
       <AgeGuide />
     </div>

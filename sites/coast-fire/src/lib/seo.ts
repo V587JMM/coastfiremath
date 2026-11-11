@@ -1,15 +1,16 @@
 import { pageHead, type SitemapEntry } from '@shipwords/core/seo';
 import site, { configured } from '../../site.config';
 
-export const homeLastModified = '2026-11-09';
-export const guideLastModified = '2026-11-06';
+export const homeLastModified = '2026-11-11';
+export const guideLastModified = '2026-11-11';
 export const methodologyLastModified = '2026-11-09';
 
 // Include only canonical, indexable pages. Update lastmod for meaningful page changes.
 export const sitemapEntries: SitemapEntry[] = [
   { path: '/', lastmod: homeLastModified },
   { path: '/what-is-coast-fire/', lastmod: guideLastModified },
-  { path: '/coast-fire-calculator-by-age/', lastmod: '2026-11-06' },
+  { path: '/coast-fire-calculator-by-age/', lastmod: '2026-11-11' },
+  { path: '/barista-fire-calculator/', lastmod: '2026-11-11' },
   { path: '/about/' },
   { path: '/editorial-policy/', lastmod: methodologyLastModified },
   { path: '/privacy/' },

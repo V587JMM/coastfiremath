@@ -1,5 +1,6 @@
 import { createRootRoute, HeadContent, Link, Outlet, Scripts } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
+import baristaCss from '~/site/barista.css?url';
 import css from '~/site/styles.css?url';
 import visualCss from '~/site/visual.css?url';
 
@@ -26,6 +27,7 @@ export const Route = createRootRoute({
     links: [
       { rel: 'stylesheet', href: css },
       { rel: 'stylesheet', href: visualCss },
+      { rel: 'stylesheet', href: baristaCss },
       { rel: 'icon', href: '/brand-icon.png', type: 'image/png', sizes: '96x96' },
     ],
   }),

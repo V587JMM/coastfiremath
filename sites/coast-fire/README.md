@@ -14,7 +14,7 @@ Set `VITE_PUBLIC_SITE_URL` (the HTTPS origin without a trailing slash), `VITE_CO
 
 Workers Builds on `main` also checks the publication configuration before building. The Worker allows crawling in `/robots.txt` and advertises the sitemap when the publication configuration is complete. For the public domain to serve this file directly, turn off Cloudflare Bot Preference Sync for the zone. Verify the public response after deployment because the zone can prepend its own rules.
 
-The `/sitemap.xml` route renders the list in `src/lib/seo.ts` when the publication configuration is complete: the homepage, Coast FIRE guide, By Age comparison, About, Editorial Policy, Privacy and Contact. DMCA, terms and refunds are supplementary noindex utility pages retained for the starter's policy requirements. No account or payment API is active. The upstream templates/ai-site directory retains the original template sources.
+The `/sitemap.xml` route renders the list in `src/lib/seo.ts` when the publication configuration is complete: the homepage, Coast FIRE guide, By Age comparison, Barista FIRE calculator, About, Editorial Policy, Privacy and Contact. DMCA, terms and refunds are supplementary noindex utility pages retained for the starter's policy requirements. No account or payment API is active. The upstream templates/ai-site directory retains the original template sources.
 
 The upstream generic check-site expects AI billing, auth and a configured email; it is a launch check for the original paid-AI template. This browser-only site's check uses TypeScript, calculation tests, production build and browser verification instead; shared checks are unchanged. Domain/email are still enforced by launch-check.mjs.
 
@@ -22,6 +22,8 @@ The upstream generic check-site expects AI billing, auth and a configured email;
 
 Results include an always-visible assumptions summary and a target-age planner. Choose a Coast age to estimate a fixed nominal monthly contribution, then apply the rounded-up amount to the main calculator. Mobile input editing shows a compact result dock with a return-to-result action. All these interactions run locally.
 Calculator inputs exist in React memory only. They do not persist on reload, enter a URL or get submitted. Example rates are illustrative, independently editable, and not investment forecasts. Exact real-return conversion; effective monthly compounding; fixed nominal deposits at month-end; deposits cease after the moving Coast threshold is reached. All displayed projections use today's dollars. Smooth scenarios are not risk simulations.
+
+The Barista FIRE calculator combines part-time take-home pay with month-end investment withdrawals. It shows the larger of an initial income-gap withdrawal target and a bridge-to-retirement target that preserves the full retirement reserve after work ends. Pay and spending keep pace with inflation; no new contributions or automatic benefits are included. Its fixed age table compares $40,000, $60,000 and $80,000 annual budgets using the same model.
 
 Production pages on `https://coastfiremath.com` load the Google Tag Manager container. Configure and publish a Google tag with the GA4 measurement ID in that container to collect traffic data. Keep calculator inputs and results out of tag variables, triggers and events. Use Tag Assistant and GA4 Realtime to check the published setup.
 

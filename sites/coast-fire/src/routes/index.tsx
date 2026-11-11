@@ -535,6 +535,13 @@ function Calculator() {
           </details>
         </>
       )}
+      <aside className="related-calculator" aria-label="Related calculator">
+        <p>
+          Planning to cover some bills with part-time work? Use the{' '}
+          <Link to="/barista-fire-calculator/">Barista FIRE calculator</Link> to estimate how take-home pay
+          and portfolio withdrawals could fund your spending before full retirement.
+        </p>
+      </aside>
       <div className="education-grid">
         <section className="age-reference">
           <h2>Coast FIRE numbers by age</h2>
