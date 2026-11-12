@@ -1,7 +1,7 @@
 import { pageHead, type SitemapEntry } from '@shipwords/core/seo';
 import site, { configured } from '../../site.config';
 
-export const homeLastModified = '2026-11-11';
+export const homeLastModified = '2026-11-12';
 export const guideLastModified = '2026-11-11';
 export const methodologyLastModified = '2026-11-09';
 

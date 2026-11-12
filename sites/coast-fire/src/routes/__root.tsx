@@ -72,7 +72,15 @@ function Layout() {
             <Link to="/" activeProps={{ 'aria-current': 'page' }} activeOptions={{ exact: true }}>
               Calculator
             </Link>
-            <Link to="/what-is-coast-fire/">The guide</Link>
+            <Link to="/barista-fire-calculator/" activeProps={{ 'aria-current': 'page' }}>
+              Barista FIRE Calculator
+            </Link>
+            <Link to="/coast-fire-calculator-by-age/" activeProps={{ 'aria-current': 'page' }}>
+              Coast FIRE Calculator by Age
+            </Link>
+            <Link to="/what-is-coast-fire/" activeProps={{ 'aria-current': 'page' }}>
+              What Is Coast FIRE?
+            </Link>
             <Link to="/editorial-policy/">Methodology</Link>
           </nav>
         </div>

@@ -1049,9 +1049,6 @@ caption {
     gap: 18px;
     font-size: 12px;
   }
-  .header-inner nav a:last-child {
-    display: none;
-  }
   .brand {
     font-size: 15px;
     gap: 7px;
