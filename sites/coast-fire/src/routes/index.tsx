@@ -300,8 +300,8 @@ function Calculator() {
         <div>
           <h1>Free Coast FIRE Calculator with Inflation-Adjusted Planning</h1>
           <p className="coast-intro">
-            Enter your numbers to see when you could stop saving for retirement. Compare returns or find the
-            monthly savings for your target Coast age.
+            Enter your numbers to find your Coast FIRE number: the investments needed today to grow to your
+            retirement target without new contributions. This milestone is also called Coast FI.
           </p>
         </div>
         <PlanActions inputs={v} result={r} goalAge={goalAge} period={spendingPeriod} />
@@ -601,12 +601,23 @@ function Calculator() {
         </div>
         <div className="faq-list">
           <details>
-            <summary>How much money do I need to Coast FIRE?</summary>
+            <summary>What is my Coast FIRE number?</summary>
             <p>
-              The amount depends on your planned retirement spending, current age, target retirement age,
-              expected return after inflation, and withdrawal rate.{' '}
+              Your Coast FIRE number is the balance you would need invested today to reach your retirement
+              target through growth alone. It depends on your retirement spending, current age, retirement
+              age, expected return after inflation, and withdrawal rate.{' '}
               <a href="#starting-point">Enter your assumptions in the calculator</a> to find how much you need
               invested today.
+            </p>
+          </details>
+          <details>
+            <summary>Is Coast FI the same as Coast FIRE?</summary>
+            <p>
+              Yes. Coast FI (coast financial independence) and Coast FIRE describe the same milestone: your
+              investments could grow to your retirement target without further contributions under your chosen
+              assumptions. You still need earnings or separate funds for living costs until retirement. This
+              calculator uses the same formula for either term.{' '}
+              <Link to="/what-is-coast-fire/">Read what Coast FIRE means</Link> for examples and limits.
             </p>
           </details>
           <details>
@@ -700,7 +711,7 @@ function Calculator() {
             the formulas and assumptions behind them.
           </p>
           <p>
-            Updated <time dateTime={homeLastModified}>November 9, 2026</time> ·{' '}
+            Updated <time dateTime={homeLastModified}>November 12, 2026</time> ·{' '}
             <Link to="/editorial-policy/">Methodology and editorial policy</Link>
           </p>
           <p>

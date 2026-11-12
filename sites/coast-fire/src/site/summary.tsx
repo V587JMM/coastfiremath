@@ -37,7 +37,7 @@ export function Summary({
       <div className="result-metrics">
         <div className="result-overview">
           <div className="coast-number">
-            <span>Needed invested today</span>
+            <span>Coast FIRE number today</span>
             <strong>{dollars(r.coast)}</strong>
             <span>
               {v.age === v.retirementAge
