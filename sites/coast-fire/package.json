@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsr generate && wrangler types && tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/lib/calculator.test.ts src/lib/barista.test.ts src/lib/publication.test.ts",
+    "test": "node --experimental-strip-types --test src/lib/calculator.test.ts src/lib/barista.test.ts src/lib/publication.test.ts src/lib/page-redirect.test.ts",
     "check": "pnpm typecheck && pnpm test && pnpm build",
     "deploy": "node launch-check.mjs && vite build && wrangler deploy"
   },

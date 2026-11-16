@@ -92,7 +92,7 @@ function BaristaCalculator() {
     <div className="calculator-page barista-page">
       <div className="page-title">
         <div>
-          <h1>barista fire calculator</h1>
+          <h1>Barista FIRE Calculator</h1>
           <p>See how part-time pay and investments could cover your life, now and after work ends.</p>
         </div>
       </div>

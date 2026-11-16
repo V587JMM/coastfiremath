@@ -16,6 +16,8 @@ Workers Builds on `main` also checks the publication configuration before buildi
 
 The `/sitemap.xml` route renders the list in `src/lib/seo.ts` when the publication configuration is complete: the homepage, Coast FIRE guide, By Age comparison, Barista FIRE calculator, About, Editorial Policy, Privacy and Contact. DMCA, terms and refunds are supplementary noindex utility pages retained for the starter's policy requirements. No account or payment API is active. The upstream templates/ai-site directory retains the original template sources.
 
+Public HTML pages use trailing slashes in internal links, canonical URLs and the sitemap. The Worker redirects GET and HEAD requests for slashless page URLs (or repeated trailing slashes) directly to the single-slash URL with HTTP 301, preserving query parameters. `src/lib/page-redirect.ts` lists these HTML routes; add new public pages there. Static assets, crawler files, API routes and unknown paths pass through unchanged. The homepage links to the Coast FIRE guide and By Age comparison next to the calculation results as well as in the relevant explanatory sections.
+
 The upstream generic check-site expects AI billing, auth and a configured email; it is a launch check for the original paid-AI template. This browser-only site's check uses TypeScript, calculation tests, production build and browser verification instead; shared checks are unchanged. Domain/email are still enforced by launch-check.mjs.
 
 ## Data and assumptions

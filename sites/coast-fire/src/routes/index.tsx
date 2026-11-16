@@ -431,6 +431,12 @@ function Calculator() {
                     Real annual return <strong>{(r.real * 100).toFixed(2)}%</strong>
                   </span>
                 </div>
+                <p className="chart-note">
+                  New to coasting? Read{' '}
+                  <Link to="/what-is-coast-fire/">what Coast FIRE means, with formulas and examples</Link>. To
+                  compare savings targets at different starting ages, use the{' '}
+                  <Link to="/coast-fire-calculator-by-age/">Coast FIRE calculator by age</Link>.
+                </p>
               </div>
             </>
           ) : (
@@ -711,7 +717,7 @@ function Calculator() {
             the formulas and assumptions behind them.
           </p>
           <p>
-            Updated <time dateTime={homeLastModified}>November 12, 2026</time> ·{' '}
+            Updated <time dateTime={homeLastModified}>November 16, 2026</time> ·{' '}
             <Link to="/editorial-policy/">Methodology and editorial policy</Link>
           </p>
           <p>
