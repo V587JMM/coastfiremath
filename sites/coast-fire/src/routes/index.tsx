@@ -543,6 +543,11 @@ function Calculator() {
       )}
       <aside className="related-calculator" aria-label="Related calculator">
         <p>
+          Want the full portfolio target rather than the amount needed to coast? Use the{' '}
+          <Link to="/fire-number-calculator/">FIRE number calculator</Link> to compare retirement spending,
+          withdrawal rates and your current progress.
+        </p>
+        <p>
           Planning to cover some bills with part-time work? Use the{' '}
           <Link to="/barista-fire-calculator/">Barista FIRE calculator</Link> to estimate how take-home pay
           and portfolio withdrawals could fund your spending before full retirement.

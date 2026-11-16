@@ -1,5 +1,6 @@
 // Only public HTML routes belong here. Assets, APIs and crawler files keep their URLs.
 const pagePaths = new Set([
+  '/fire-number-calculator',
   '/what-is-coast-fire',
   '/coast-fire-calculator-by-age',
   '/barista-fire-calculator',

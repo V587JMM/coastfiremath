@@ -54,7 +54,7 @@ function Page() {
     <Article
       title="What is Coast FIRE?"
       intro="Fund retirement first. Then let time do more of the work."
-      updated="November 11, 2026"
+      updated="November 16, 2026"
     >
       {operator && (
         <p>
@@ -158,6 +158,11 @@ function Page() {
         nominal deposits then change, including the first month.
       </p>
       <h2>Coast FIRE vs Barista, Lean and Fat FIRE</h2>
+      <p>
+        To estimate the full investment balance associated with retirement spending, use the{' '}
+        <Link to="/fire-number-calculator/">FIRE number calculator</Link>. It compares withdrawal assumptions
+        and shows how much of that full target you have invested today.
+      </p>
       <p>
         Full FIRE asks whether your portfolio can support withdrawals now. Coast FIRE asks whether you could
         stop contributing now and wait until your chosen retirement age. The labels below describe different

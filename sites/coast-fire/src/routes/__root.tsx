@@ -72,6 +72,9 @@ function Layout() {
             <Link to="/" activeProps={{ 'aria-current': 'page' }} activeOptions={{ exact: true }}>
               Calculator
             </Link>
+            <Link to="/fire-number-calculator/" activeProps={{ 'aria-current': 'page' }}>
+              FIRE Number Calculator
+            </Link>
             <Link to="/barista-fire-calculator/" activeProps={{ 'aria-current': 'page' }}>
               Barista FIRE Calculator
             </Link>

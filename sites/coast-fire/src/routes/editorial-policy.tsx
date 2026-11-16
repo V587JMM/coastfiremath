@@ -5,7 +5,7 @@ export const Route = createFileRoute('/editorial-policy')({
   head: () =>
     head(
       'Calculation Methodology & Editorial Policy',
-      'Check the Coast FIRE formula, inflation adjustment, and monthly savings estimates with worked examples you can reproduce in a spreadsheet.',
+      'Check the Coast FIRE and FIRE number formulas, inflation adjustments, and monthly savings projections with worked examples you can reproduce in a spreadsheet.',
       '/editorial-policy/',
       false,
       false,
@@ -17,7 +17,7 @@ function Page() {
     <Article
       title="Methodology & editorial policy"
       intro="See how the calculator works and verify the results with worked examples."
-      updated="November 9, 2026"
+      updated="November 16, 2026"
     >
       <h2>The calculation</h2>
       <p>
@@ -200,6 +200,28 @@ function Page() {
         The lower and higher comparisons shift nominal return down and up by two percentage points. They keep
         every other input unchanged. Negative real returns are retained. The homepage age-reference table uses
         the same demonstration spending, retirement age, and return assumptions across all starting ages.
+      </p>
+      <h2 id="fire-number-methodology">FIRE number and accumulation timeline</h2>
+      <p>
+        The <Link to="/fire-number-calculator/">FIRE number calculator</Link> divides annual portfolio-funded
+        spending by the initial withdrawal assumption as a decimal. At $48,000 of annual spending and 4%, this
+        gives $1,200,000. With $300,000 invested, progress is 25% and the current funding gap is $900,000.
+        Progress text can exceed 100%; the visual bar stops at 100%. Monthly spending is multiplied by 12
+        before calculating the target. The expected investment return does not change the FIRE number.
+      </p>
+      <p>
+        Its optional timeline uses a real annual return after inflation and fees, converted to an effective
+        monthly growth factor. Each month the existing balance grows, then a contribution is added at
+        month-end. Contributions are constant in today's purchasing power, so future nominal deposits are
+        assumed to rise with inflation. This differs from the homepage's default fixed nominal deposits. With
+        zero real growth, $300,000 invested and $2,500 a month reach a $1,200,000 target after 360 months.
+      </p>
+      <p>
+        The projection stops at the first month that reaches the target, using a relative rounding tolerance
+        of one trillionth at the boundary. If it does not reach the target by age 100, it reports that limit
+        and the ending balance; it does not invent a retirement date. Already-funded targets have a zero-month
+        accumulation period. The model makes no withdrawals during accumulation and does not simulate the
+        subsequent retirement. It does not assess a withdrawal rate's success probability.
       </p>
       <h2>Limits</h2>
       <p>

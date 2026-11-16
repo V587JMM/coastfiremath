@@ -7,9 +7,15 @@ export const Route = createFileRoute('/llms.txt')({
       GET: () =>
         llmsTxt(
           site,
-          'US Coast FIRE calculator. Fixed nominal monthly contributions, exact inflation adjustment, results in today’s dollars. Educational estimates.',
+          'US retirement planning calculators for Coast FIRE and full FIRE targets. Educational estimates in today’s dollars, with explicit spending, withdrawal and growth assumptions.',
           [
             { title: 'Calculator', path: '/', description: 'Coast number, gap and estimated coast age.' },
+            {
+              title: 'FIRE Number Calculator',
+              path: '/fire-number-calculator/',
+              description:
+                'Full retirement target, withdrawal-rate comparisons, progress and an optional accumulation timeline.',
+            },
             {
               title: 'Methodology',
               path: '/editorial-policy/',
