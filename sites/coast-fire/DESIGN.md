@@ -2,6 +2,10 @@
 
 ## Current visual direction
 
+### Directory badge
+
+Place the official NewName.ai listing badge below the shared footer navigation, with 20px of breathing room. Keep its native 200 × 54 size and dark artwork, descriptive alt text, referral URL and detection attribute. The link opens in a new tab with `noopener`. Use the same placement on desktop and mobile so the homepage badge remains visible and crawlable.
+
 ### FIRE number calculator
 
 Extend the established Pastel consumer direction (seed 762299305), existing Outfit/DM Sans fonts and ocean/sea-mist palette. This is another working tool inside the existing site, not a replacement visual system. The question is: what investment balance could fund my retirement spending? Make the full FIRE target the dominant teal figure, then show the actual funded percentage, funding gap and spending supported by current investments. Keep that target distinct from the discounted Coast threshold.

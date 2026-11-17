@@ -107,6 +107,15 @@ function Layout() {
           <Link to="/dmca/">DMCA</Link>
           <Link to="/refunds/">Refunds</Link>
         </nav>
+        <a
+          className="directory-badge"
+          href="https://newname.ai/badge?ref=coast-fire-calculator"
+          target="_blank"
+          rel="noopener"
+          data-newname-badge="coast-fire-calculator"
+        >
+          <img src="https://newname.ai/badge/listed.svg" alt="Listed on NewName.ai" width={200} height={54} />
+        </a>
         <p className="fine">
           Educational estimates, not personalized financial advice. US dollars · Single-person planning.
         </p>
