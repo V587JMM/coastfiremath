@@ -124,6 +124,17 @@
 .fire-progress::-moz-progress-bar {
   background: var(--accent);
 }
+.fire-balance-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.fire-balance-context strong {
+  color: var(--ink);
+}
 .fire-result-metrics {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -196,7 +207,8 @@
 .fire-rate-table td {
   padding: 6px 10px;
 }
-.fire-rate-table button {
+.fire-rate-table button,
+.fire-use-budget {
   background: transparent;
   border: 0;
   padding: 10px 0;
@@ -207,6 +219,9 @@
   text-align: left;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+.fire-use-budget {
+  white-space: nowrap;
 }
 .fire-rate-table button span {
   display: block;
@@ -289,6 +304,9 @@
 .fire-timeline-output {
   padding-top: 18px;
 }
+.fire-timeline-print {
+  display: none;
+}
 .fire-timeline-answer {
   font-family: var(--font-display);
   font-size: 25px;
@@ -328,8 +346,12 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.fire-chart-end {
+.fire-chart-point {
   fill: var(--accent);
+}
+.fire-projection .fire-chart-end-value {
+  fill: var(--ink);
+  font-weight: 600;
 }
 .fire-projection figcaption {
   font-size: 12px;
@@ -352,6 +374,19 @@
 }
 .fire-threshold-key::before {
   border-top: 2px dashed var(--chart-comparison);
+}
+.fire-projection-milestones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0 0;
+}
+.fire-projection-milestones dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
 }
 .fire-number-guide {
   margin-top: 64px;
@@ -520,9 +555,19 @@
   }
   .fire-number-grid > .inputs-panel,
   .fire-copy-button,
+  .fire-copy-status,
   .fire-result-jump,
+  .fire-timeline-inputs,
   .fire-timeline-toggle {
     display: none;
+  }
+  .fire-timeline-grid,
+  .fire-timeline-print {
+    display: block;
+  }
+  .fire-projection,
+  .fire-result-metrics {
+    break-inside: avoid;
   }
   .fire-number-result,
   .fire-timeline-section {

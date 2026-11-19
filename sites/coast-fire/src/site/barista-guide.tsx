@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { BARISTA_EXAMPLE, baristaAgeRows, calculateBarista } from '~/lib/barista';
 import { coastRequirements, dollars } from '~/lib/calculator';
+import { baristaLastModified } from '~/lib/seo';
 import { ContentFaq } from './content-faq';
 
 export const baristaFaq = [
@@ -228,6 +229,11 @@ export function BaristaGuide() {
           rest. Neither label determines a particular job or number of weekly hours. A part-time worker can
           follow either approach, depending on whether earnings cover the budget.
         </p>
+        <p>
+          Planning for the point when part-time pay ends? The{' '}
+          <Link to="/fire-number-calculator/">FIRE number calculator</Link> compares portfolio targets for
+          funding your full retirement budget at different withdrawal rates.
+        </p>
         <div className="content-table">
           <table>
             <caption>Compare the cash-flow assumptions before comparing balances</caption>
@@ -282,7 +288,8 @@ export function BaristaGuide() {
         <ContentFaq questions={baristaFaq} />
       </section>
       <p className="review-date">
-        Updated November 11, 2026 · <Link to="/editorial-policy/">Our calculation methodology</Link>
+        Updated <time dateTime={baristaLastModified}>November 18, 2026</time> ·{' '}
+        <Link to="/editorial-policy/">Our calculation methodology</Link>
       </p>
     </div>
   );

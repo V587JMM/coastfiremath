@@ -75,11 +75,14 @@ function Layout() {
             <Link to="/fire-number-calculator/" activeProps={{ 'aria-current': 'page' }}>
               FIRE Number Calculator
             </Link>
+            <Link to="/4-percent-rule-calculator/" activeProps={{ 'aria-current': 'page' }}>
+              4% Rule Calculator
+            </Link>
             <Link to="/barista-fire-calculator/" activeProps={{ 'aria-current': 'page' }}>
               Barista FIRE Calculator
             </Link>
             <Link to="/coast-fire-calculator-by-age/" activeProps={{ 'aria-current': 'page' }}>
-              Coast FIRE Calculator by Age
+              Coast FIRE by Age
             </Link>
             <Link to="/what-is-coast-fire/" activeProps={{ 'aria-current': 'page' }}>
               What Is Coast FIRE?

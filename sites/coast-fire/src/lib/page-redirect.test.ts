@@ -7,6 +7,7 @@ const origin = 'https://coastfire-fixture.com';
 test('public pages redirect once to a trailing slash and preserve query parameters', () => {
   for (const path of [
     '/fire-number-calculator',
+    '/4-percent-rule-calculator',
     '/what-is-coast-fire',
     '/coast-fire-calculator-by-age',
     '/barista-fire-calculator',
@@ -36,6 +37,7 @@ test('home, canonical pages, files, APIs and unknown routes are passed through',
   for (const path of [
     '/',
     '/fire-number-calculator/',
+    '/4-percent-rule-calculator/',
     '/barista-fire-calculator/',
     '/what-is-coast-fire/?ref=home',
     '/coast-fire-calculator-by-age/',

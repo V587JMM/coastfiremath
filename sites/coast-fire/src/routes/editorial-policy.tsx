@@ -5,7 +5,7 @@ export const Route = createFileRoute('/editorial-policy')({
   head: () =>
     head(
       'Calculation Methodology & Editorial Policy',
-      'Check the Coast FIRE and FIRE number formulas, inflation adjustments, and monthly savings projections with worked examples you can reproduce in a spreadsheet.',
+      'Check the Coast FIRE, FIRE number and retirement withdrawal formulas, with worked examples for inflation adjustments, monthly savings and portfolio drawdown.',
       '/editorial-policy/',
       false,
       false,
@@ -17,7 +17,7 @@ function Page() {
     <Article
       title="Methodology & editorial policy"
       intro="See how the calculator works and verify the results with worked examples."
-      updated="November 16, 2026"
+      updated="November 18, 2026"
     >
       <h2>The calculation</h2>
       <p>
@@ -223,12 +223,39 @@ function Page() {
         accumulation period. The model makes no withdrawals during accumulation and does not simulate the
         subsequent retirement. It does not assess a withdrawal rate's success probability.
       </p>
+      <h2 id="withdrawal-methodology">4% rule and retirement withdrawals</h2>
+      <p>
+        The <Link to="/4-percent-rule-calculator/">4 Percent Rule Calculator</Link> multiplies the starting
+        balance by the selected withdrawal rate. In spending mode, it divides annual portfolio-funded spending
+        by the same rate. Both calculations treat the rate as a decimal. At $1 million and 4%, the first
+        withdrawal is $40,000, about $3,333 a month before taxes.
+      </p>
+      <p>
+        The model subtracts one withdrawal at the start of each year and applies investment returns to the
+        remainder, followed by the annual fee. Its real annual growth factor is (1 + nominal return) × (1 −
+        fee) ÷ (1 + inflation). Using 7% nominal return, 3% inflation and no fee, the first year ends at
+        $960,000 × 1.07 ÷ 1.03, about $997,282 in today’s dollars. Monthly amounts divide the first annual
+        withdrawal by 12 for budgeting.
+      </p>
+      <p>
+        The classic rule holds planned spending constant in real terms. In nominal dollars the withdrawal in
+        year N is the first withdrawal × (1 + inflation) raised to N − 1. Year-end nominal balances use N
+        years of inflation. The percentage alternative calculates each year’s withdrawal from its starting
+        balance. Payments can fall when that balance falls. If the planned amount exceeds the available
+        balance, the model pays the remainder and records the first shortfall. It tracks depletion separately,
+        since a final payment can use all remaining funds and still be paid in full.
+      </p>
+      <p>
+        The lower-return scenario subtracts two percentage points from the base real return. The early-loss
+        scenario uses −20% and −10% nominal returns in the first two years, then returns to the base
+        assumption. Inflation and fees stay the same. These preset scenarios are illustrations. Historical
+        backtests and probabilities are outside this model.
+      </p>
       <h2>Limits</h2>
       <p>
-        No Social Security, pensions, tax calculation, account-access rules, investment fees or variable
-        market returns are modeled automatically. Include appropriate costs in your spending budget and
-        reflect costs in your return assumption. The tool does not determine whether a particular account can
-        be accessed at your planned retirement age. It does not model withdrawals after retirement or assign a
+        Social Security, pensions, taxes and account access are outside these models. Include applicable
+        expenses in your spending budget and reflect investment fees in your return assumption or use the fee
+        field in the withdrawal calculator. All tools use illustrative assumptions with no estimate of
         retirement-success probability.
       </p>
       <h2>Sources and review</h2>

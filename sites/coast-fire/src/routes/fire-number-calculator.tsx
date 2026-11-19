@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useRef, useState } from 'react';
+import { type Ref, useRef, useState } from 'react';
 import { ageLabel, convertSpending, dollars, type SpendingPeriod } from '~/lib/calculator';
 import {
   calculateFireNumber,
@@ -11,7 +11,7 @@ import {
   fireTimelineIssues,
   projectFireNumber,
 } from '~/lib/fire-number';
-import { head } from '~/lib/seo';
+import { fireNumberLastModified, head } from '~/lib/seo';
 import fireNumberCss from '~/site/fire-number.css?url';
 import { FireNumberGuide } from '~/site/fire-number-guide';
 import { FireNumberProjection } from '~/site/fire-number-projection';
@@ -68,6 +68,7 @@ function NumberField({
   max,
   step = 1,
   unit,
+  inputRef,
 }: {
   name: string;
   label: string;
@@ -79,6 +80,7 @@ function NumberField({
   max: number;
   step?: number;
   unit?: '$' | '%';
+  inputRef?: Ref<HTMLInputElement>;
 }) {
   const id = `fire-${name}`;
   return (
@@ -88,6 +90,7 @@ function NumberField({
         {unit === '$' && <span aria-hidden="true">$</span>}
         <input
           id={id}
+          ref={inputRef}
           type="number"
           inputMode={name === 'age' ? 'numeric' : 'decimal'}
           value={value}
@@ -116,6 +119,7 @@ function FireNumberCalculator() {
   const [showTimeline, setShowTimeline] = useState(false);
   const [timelineValues, setTimelineValues] = useState(initialTimeline);
   const [copyStatus, setCopyStatus] = useState('');
+  const spendingRef = useRef<HTMLInputElement>(null);
   const resultRef = useRef<HTMLElement>(null);
   const inputs: FireNumberInputs = {
     spending: convertSpending(numeric(values.spending), period, 'year'),
@@ -151,6 +155,11 @@ function FireNumberCalculator() {
     }));
     setPeriod(next);
     setCopyStatus('');
+  }
+  function applyAnnualBudget(spending: number) {
+    setPeriod('year');
+    change('spending', String(spending));
+    spendingRef.current?.focus();
   }
   function reset() {
     setValues(initialValues);
@@ -194,7 +203,7 @@ function FireNumberCalculator() {
           <p>Find the investments needed to fund your retirement spending, in today’s dollars.</p>
         </div>
       </div>
-      <div className="fire-number-grid" data-ui="fire-number-calculator">
+      <div className="fire-number-grid">
         <section className="inputs-panel" aria-labelledby="fire-inputs-heading">
           <div className="panel-heading">
             <h2 id="fire-inputs-heading">Your retirement budget</h2>
@@ -216,6 +225,7 @@ function FireNumberCalculator() {
           </fieldset>
           <NumberField
             name="spending"
+            inputRef={spendingRef}
             label={`${period === 'month' ? 'Monthly' : 'Annual'} retirement spending`}
             value={values.spending}
             onChange={(value) => change('spending', value)}
@@ -235,7 +245,7 @@ function FireNumberCalculator() {
             label="Withdrawal rate"
             value={values.withdrawal}
             onChange={(value) => change('withdrawal', value)}
-            hint="Assumed first-year withdrawal, not an investment return."
+            hint="Share of your portfolio you plan to withdraw in the first year."
             error={issues.withdrawal}
             min={0.1}
             max={15}
@@ -289,8 +299,8 @@ function FireNumberCalculator() {
                 </div>
                 <p className="fire-result-context">
                   A {inputs.withdrawal}% initial withdrawal equals {dollars(inputs.spending)} a year, or{' '}
-                  {dollars(inputs.spending / 12)} a month. This target does not test how long the portfolio
-                  will last.
+                  {dollars(inputs.spending / 12)} a month. Portfolio longevity depends on actual returns and
+                  withdrawals over time.
                 </p>
                 <div className="fire-progress-heading">
                   <span>Funded today</span>
@@ -303,13 +313,16 @@ function FireNumberCalculator() {
                   aria-label="Current investments as a share of your FIRE target"
                   aria-valuetext={`${result.progress.toFixed(1)}% funded`}
                 />
+                <p className="fire-balance-context">
+                  Invested today <strong>{dollars(inputs.balance)}</strong>
+                </p>
                 <dl className="fire-result-metrics">
                   <div>
                     <dt>{result.surplus > 0 ? 'Above the target' : 'Still to invest'}</dt>
                     <dd>{dollars(result.surplus > 0 ? result.surplus : result.gap)}</dd>
                   </div>
                   <div>
-                    <dt>Current investments × {inputs.withdrawal}%</dt>
+                    <dt>First-year spending at {inputs.withdrawal}%</dt>
                     <dd>
                       {dollars(result.annualSupported)}
                       <span> /year</span>
@@ -397,7 +410,7 @@ function FireNumberCalculator() {
           Estimate my time to FIRE
         </label>
         {showTimeline && (
-          <div className="fire-timeline-grid" data-ui="fire-timeline">
+          <div className="fire-timeline-grid">
             <div className="fire-timeline-inputs">
               {(
                 [
@@ -421,10 +434,10 @@ function FireNumberCalculator() {
                   {
                     key: 'real',
                     label: 'Real annual return',
-                    hint: 'After inflation and fees. 4% is an editable example, not a forecast.',
+                    hint: 'A 7% nominal return after fees is about 3.88% real with 3% inflation (1.07 ÷ 1.03 − 1).',
                     min: -50,
                     max: 30,
-                    step: 0.5,
+                    step: 0.01,
                     unit: '%',
                   },
                 ] as const
@@ -464,11 +477,16 @@ function FireNumberCalculator() {
                         ? 'No additional saving is needed to meet the target you entered. This is not a retirement-readiness assessment.'
                         : `About ${Math.floor(projection.reachedMonth / 12)} years and ${projection.reachedMonth % 12} months from now, using ${dollars(timeline.monthly)} monthly deposits and a ${timeline.real}% real annual return.`}
                   </p>
+                  <p className="fire-timeline-print">
+                    Starting age {timeline.age} · {dollars(timeline.monthly)}/month in today’s dollars ·{' '}
+                    {timeline.real}% real annual return
+                  </p>
                   {projection.points.length > 1 && (
                     <FireNumberProjection
                       points={projection.points}
                       target={result.target}
                       age={timeline.age}
+                      reached={projection.reachedMonth !== null}
                     />
                   )}
                   <p className="fire-input-note">
@@ -487,9 +505,15 @@ function FireNumberCalculator() {
           </div>
         )}
       </section>
-      <FireNumberGuide />
+      <FireNumberGuide onUseAnnualBudget={applyAnnualBudget} />
       <p className="review-date">
-        Updated <time dateTime="2026-11-16">November 16, 2026</time> ·{' '}
+        Updated{' '}
+        <time dateTime={fireNumberLastModified}>
+          {new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(
+            new Date(fireNumberLastModified),
+          )}
+        </time>{' '}
+        ·{' '}
         <Link to="/editorial-policy/" hash="fire-number-methodology">
           Calculation methodology
         </Link>

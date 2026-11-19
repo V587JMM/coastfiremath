@@ -77,11 +77,13 @@ input:focus-visible {
   height: auto;
 }
 .header-inner nav {
-  gap: 8px;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 6px;
   font-size: 13px;
 }
 .header-inner nav a {
-  padding: 9px 14px;
+  padding: 9px 8px;
   border-radius: 8px;
   color: var(--muted);
   white-space: nowrap;
@@ -1232,7 +1234,7 @@ tbody td {
     font-size: 17px;
   }
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1360px) {
   .header-inner {
     flex-wrap: wrap;
     gap: 8px;
@@ -1240,7 +1242,6 @@ tbody td {
   }
   .header-inner nav {
     flex-basis: 100%;
-    flex-wrap: wrap;
     gap: 4px;
   }
   .header-inner nav a {

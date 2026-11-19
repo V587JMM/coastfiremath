@@ -40,7 +40,7 @@ const questions = [
 const spendingLevels = [30000, 40000, 60000, 80000, 100000];
 const rates = [3, 3.5, 4];
 
-export function FireNumberGuide() {
+export function FireNumberGuide({ onUseAnnualBudget }: { onUseAnnualBudget: (spending: number) => void }) {
   return (
     <div className="article-body fire-number-guide">
       <section aria-labelledby="fire-formula-heading">
@@ -83,10 +83,11 @@ export function FireNumberGuide() {
       <section aria-labelledby="fire-spending-heading">
         <h2 id="fire-spending-heading">FIRE numbers by spending</h2>
         <p>
-          This fixed reference compares retirement budgets at three initial withdrawal assumptions. All
-          figures are in today’s US dollars. It stays unchanged when you edit the calculator.
+          Compare retirement budgets at three initial withdrawal rates. Select an annual budget to try it in
+          the calculator. All figures are in today’s US dollars.
         </p>
-        <div className="fire-table-scroll">
+        {/* biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard users need to scroll all table columns. */}
+        <section className="fire-table-scroll" aria-labelledby="fire-spending-heading" tabIndex={0}>
           <table className="fire-spending-table">
             <caption>
               Illustrative portfolio targets · No automatic Social Security or pension deduction
@@ -106,7 +107,16 @@ export function FireNumberGuide() {
               {spendingLevels.map((spending) => (
                 <tr key={spending}>
                   <th scope="row">{dollars(spending / 12)}</th>
-                  <td>{dollars(spending)}</td>
+                  <td>
+                    <button
+                      className="fire-use-budget"
+                      type="button"
+                      aria-label={`Use ${dollars(spending)} annual spending`}
+                      onClick={() => onUseAnnualBudget(spending)}
+                    >
+                      Use {dollars(spending)}
+                    </button>
+                  </td>
                   {rates.map((withdrawal) => (
                     <td key={withdrawal}>
                       {dollars(calculateFireNumber({ spending, withdrawal, balance: 0 }).target)}
@@ -116,7 +126,7 @@ export function FireNumberGuide() {
               ))}
             </tbody>
           </table>
-        </div>
+        </section>
         <p>
           At 4%, another $100 a month of retirement spending adds $30,000 to the target. A recurring expense
           changes both your budget and the investment balance needed to fund it.
@@ -145,6 +155,11 @@ export function FireNumberGuide() {
             Schwab explains how time horizon and portfolio choices affect withdrawals
           </a>
           . Neither source endorses this calculator or its example settings.
+        </p>
+        <p>
+          Once you have a starting balance, the{' '}
+          <Link to="/4-percent-rule-calculator/">4% Rule Calculator</Link> estimates first-year income and
+          projects withdrawals through retirement under different return assumptions.
         </p>
         <h3>Keep the income timing visible</h3>
         <p>

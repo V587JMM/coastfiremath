@@ -6,6 +6,12 @@
 
 Place the official NewName.ai listing badge below the shared footer navigation, with 20px of breathing room. Keep its native 200 × 54 size and dark artwork, descriptive alt text, referral URL and detection attribute. The link opens in a new tab with `noopener`. Use the same placement on desktop and mobile so the homepage badge remains visible and crawlable.
 
+### 4 percent rule calculator
+
+Use the site's ocean and sea-mist colors and Outfit/DM Sans type. Lead with portfolio-to-income, with the first year's annual withdrawal as the dominant teal figure and the monthly equivalent immediately below it. The spending mode shows the implied portfolio and links to the accumulation timeline. Keep a compact input column beside results and stack them on phones. Place the three balance paths directly below the result. Different line patterns and a textual scenario summary convey the same outcomes.
+
+Use an annual withdrawal at the start of each year, followed by investment returns and fees. Display the main chart in today’s dollars. The annual schedule switches dollar bases and distinguishes planned withdrawals from amounts actually available. Rate presets and the reference table update the calculator in place. Print the assumptions and scenario results as text.
+
 ### FIRE number calculator
 
 Extend the established Pastel consumer direction (seed 762299305), existing Outfit/DM Sans fonts and ocean/sea-mist palette. This is another working tool inside the existing site, not a replacement visual system. The question is: what investment balance could fund my retirement spending? Make the full FIRE target the dominant teal figure, then show the actual funded percentage, funding gap and spending supported by current investments. Keep that target distinct from the discounted Coast threshold.
@@ -14,11 +20,13 @@ The primary form has monthly/yearly spending, a withdrawal assumption and curren
 
 Composition: a compact title; spending form beside the target, progress and rate comparison; optional timeline below; a readable formula and worked example; a fixed spending/rate table; withdrawal assumptions, US budgeting boundaries and FIRE/Coast distinctions; FAQ. Retain the site's 20px panels and control styling, with scoped CSS so existing calculators are unchanged. On phones stack the form and target, provide a result jump, and constrain tables to their own scrolling region. Use the two-column wrapping navigation for the additional crawlable tool link. No decorative photography is needed for the live numerical tool.
 
+Show the current balance beside funding progress so it also appears in print. Label the savings path with its ending age and balance, and repeat exact starting and ending amounts below the chart. The printed timeline shows the inputs as text. Each reference budget can populate the annual spending field and return focus there.
+
 Research references: [WorkFree](https://workfree.me/fire-number-calculator/) separates a spending-based target from an optional savings timeline; [Engaging Data](https://engaging-data.com/fire-calculator/) makes accumulation assumptions and today's-dollar units explicit. Adapt these useful interaction patterns with original copy and implementation. For withdrawal context use [Fidelity's early-retirement guide](https://www.fidelity.com/learning-center/personal-finance/how-to-retire-early) and [Schwab's withdrawal-rule explanation](https://www.schwab.com/learn/story/beyond-4-rule-how-much-can-you-spend-retirement). Do not imply a universal retirement success rate or indefinite portfolio survival.
 
 ### Shared calculator design
 
-Primary navigation exposes the FIRE Number Calculator, Barista FIRE Calculator, Coast FIRE Calculator by Age and What Is Coast FIRE? as server-rendered links using their topic names and canonical trailing-slash URLs. Retain Calculator and Methodology. At widths up to 1280px, move navigation below the brand and wrap links; on phones use two columns with 44px minimum targets. Do not hide the last navigation item or require JavaScript to discover a tool.
+Primary navigation exposes the FIRE Number Calculator, 4% Rule Calculator, Barista FIRE Calculator, Coast FIRE Calculator by Age and What Is Coast FIRE? as server-rendered links with their canonical trailing-slash URLs. Retain Calculator and Methodology. At widths up to 1360px, move navigation below the brand and wrap links. On phones use two columns with 44px minimum targets. Keep every tool link visible without JavaScript.
 
 The Barista FIRE inner page inherits the current ocean, sea-mist and sunrise tokens, Outfit headings, DM Sans controls and rounded calculator panels. Its question is how much must be invested to combine part-time earnings with withdrawals today, while still funding retirement after work stops. The main teal amount is the larger of the income-gap target and a monthly bridge-to-retirement calculation; show the income split and both checks beside it. Default example: age 35, stop work at 65, $500,000 invested, $40,000 spending, $25/hour, 20 hours/week, 52 paid weeks, 20% income deduction, 7% nominal return, 3% inflation and 4% withdrawal assumption. Keep all amounts in today's dollars. Fields update locally; invalid fields receive specific feedback and clear results. On phones, pair related fields, provide a result jump and keep tables inside their own scrollable frame. Reading order: calculator, definition, formulas, fixed age/spending examples, Barista versus Coast, FAQ. Preserve the existing brand rather than dealing a replacement design.
 

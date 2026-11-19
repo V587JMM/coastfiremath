@@ -3,16 +3,19 @@ import site, { configured } from '../../site.config';
 
 export const homeLastModified = '2026-11-16';
 export const guideLastModified = '2026-11-16';
-export const methodologyLastModified = '2026-11-16';
-export const fireNumberLastModified = '2026-11-16';
+export const methodologyLastModified = '2026-11-18';
+export const fireNumberLastModified = '2026-11-18';
+export const baristaLastModified = '2026-11-18';
+export const fourPercentLastModified = '2026-11-18';
 
 // Include only canonical, indexable pages. Update lastmod for meaningful page changes.
 export const sitemapEntries: SitemapEntry[] = [
   { path: '/', lastmod: homeLastModified },
   { path: '/fire-number-calculator/', lastmod: fireNumberLastModified },
+  { path: '/4-percent-rule-calculator/', lastmod: fourPercentLastModified },
   { path: '/what-is-coast-fire/', lastmod: guideLastModified },
   { path: '/coast-fire-calculator-by-age/', lastmod: '2026-11-11' },
-  { path: '/barista-fire-calculator/', lastmod: '2026-11-16' },
+  { path: '/barista-fire-calculator/', lastmod: baristaLastModified },
   { path: '/about/' },
   { path: '/editorial-policy/', lastmod: methodologyLastModified },
   { path: '/privacy/' },
