@@ -1,144 +1,110 @@
 <div align="center">
 
-<a href="https://shipwords.dev/"><img src="apps/www/public/img/og.jpg" alt="shipwords: One keyword. One site." width="100%"></a>
+<a href="https://coastfiremath.com/"><img src="sites/coast-fire/public/share/coast-fire-guide.png" alt="Coast FIRE Math — Free Inflation-Adjusted Retirement & FIRE Calculators" width="100%"></a>
 
-**An open-source framework for new-keyword site fleets: a new site in an afternoon, taking payments the day it launches.**
+# Coast FIRE Math
 
-[![CI](https://github.com/shipwords-dev/shipwords/actions/workflows/ci.yml/badge.svg)](https://github.com/shipwords-dev/shipwords/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+**Free, browser-only, inflation-adjusted calculators for Coast FIRE, FIRE Number, the 4% Rule, and Barista FIRE.**
+
+[![Website](https://img.shields.io/badge/Website-coastfiremath.com-0F766E?style=flat)](https://coastfiremath.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
 [![TanStack Start](https://img.shields.io/badge/TanStack-Start-FF4154?logo=reactquery&logoColor=white)](https://tanstack.com/start)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![GitHub stars](https://img.shields.io/github/stars/shipwords-dev/shipwords?style=flat&logo=github)](https://github.com/shipwords-dev/shipwords/stargazers)
 
 **English** · [中文](README.zh-CN.md)
 
 </div>
 
-shipwords is a free, MIT-licensed framework for running a fleet of new-keyword AI image and video sites on Cloudflare, one site per keyword. What stays the same is shared: accounts, payments, credits and AI generation are written once. What changes is each site's own: pages, look and domain. Website: [shipwords.dev](https://shipwords.dev/).
+---
 
-## Why shipwords
+**Coast FIRE Math** ([https://coastfiremath.com/](https://coastfiremath.com/)) is an independent, privacy-first retirement planning toolkit designed around one practical question: *when can retirement contributions become optional, letting compound growth carry your portfolio to your retirement target?*
 
-**Built for a fleet of new-keyword sites.** Put up a site for every new keyword, keep improving the ones that take off, and leave the rest alone. Fix a bug in the shared core once, and every site can take the update on its next deploy. Each site deploys on its own, with its own database, storage and payment account, so launching or retiring one never touches the others.
+All calculations run locally in your browser with no accounts, no paywalls, and no server-side storage of your financial numbers.
 
-**Proven AI, built in.** [tinydeskai.io](https://tinydeskai.io/) is built on shipwords, and its full source is in [`sites/tinydeskai-example`](sites/tinydeskai-example), ready to fork.
+## Live Calculators & Guides
 
-- **Video templates**: turn a viral clip into a template; visitors upload photos and get the same video back. That's how Tiny Desk AI works.
-- **Face swap that holds up**: the whole clip in one pass. Each uploaded photo replaces a performer, face, hair and clothes, with mouths still on the beat. Missed swaps can be re-rendered shot by shot before delivery, as tinydeskai.io does.
-- **The popular models, built in**: GPT Image, Nano Banana, Seedream, FLUX, Seedance, Veo, Kling, Wan and more, behind one Yir API key, paid per generation.
+| Tool / Guide | Live Page | What It Does |
+| --- | --- | --- |
+| **Coast FIRE Calculator** | [coastfiremath.com](https://coastfiremath.com/) | Computes your Coast FIRE number, funding gap, estimated Coast age, target-age reverse monthly savings plan, return/inflation scenarios, and optional Excel (`.xlsx`) & Print/PDF exports. |
+| **Coast FIRE by Age** | [/coast-fire-calculator-by-age/](https://coastfiremath.com/coast-fire-calculator-by-age/) | Interactive comparison table of Coast FIRE targets from age 22 to 60 across spending tiers and editable assumptions. |
+| **FIRE Number Calculator** | [/fire-number-calculator/](https://coastfiremath.com/fire-number-calculator/) | Estimates full retirement targets across 3%, 3.5%, 4%, and custom withdrawal rates, with funding progress and an optional timeline. |
+| **4% Rule Calculator** | [/4-percent-rule-calculator/](https://coastfiremath.com/4-percent-rule-calculator/) | Models retirement withdrawal rates, annual portfolio-funded spending, and required nest egg sizes. |
+| **Barista FIRE Calculator** | [/barista-fire-calculator/](https://coastfiremath.com/barista-fire-calculator/) | Combines part-time income with portfolio withdrawals to estimate bridge-to-retirement targets. |
+| **What Is Coast FIRE?** | [/what-is-coast-fire/](https://coastfiremath.com/what-is-coast-fire/) | Plain-English guide covering the Coast FIRE formula, worked examples, account types, and comparisons with other FIRE paths. |
+| **Coast FIRE vs FIRE** | [/coast-fire-vs-fire/](https://coastfiremath.com/coast-fire-vs-fire/) | Side-by-side comparison of Coast FIRE and Full FIRE using the same target portfolio and assumptions. |
+| **Methodology** | [/editorial-policy/](https://coastfiremath.com/editorial-policy/) | Transparent documentation of formulas, rounding conventions, assumptions, and official sources. |
 
-**Takes money out of the box.** Every site comes with:
+## Modeling & Privacy Principles
 
-- Google and email sign-in, account page
-- Stripe and PayPal, credit packs and subscriptions, orders and refunds
-- Email notifications
-- Free guest tries with abuse limits (reCAPTCHA v3)
-- Privacy, terms, refund and DMCA pages
-- SEO, `sitemap.xml`, `robots.txt`, `llms.txt`, analytics
+- **Today's dollars & exact real return**: Converts nominal investment return and inflation using the exact real-return relationship `(1 + r) / (1 + i) - 1`, with effective monthly compounding.
+- **Flexible contribution modes**: Supports both fixed nominal monthly contributions (default) and inflation-indexed monthly contributions.
+- **Target-age reverse planner**: Pick a desired Coast age to back-solve the monthly savings needed, then apply it directly to the main model.
+- **Client-side only**: Financial inputs live strictly in React memory — never uploaded, logged, placed in URLs, or persisted to browser storage.
+- **Local exports on demand**: Generates an Excel (`.xlsx`) workbook or print/PDF summary locally only when you explicitly click export.
 
-The money code is shared and tested: double charges, repeated or out-of-order payment events and refunds for failed jobs are all covered.
+## Repository Layout
 
-## Build a site with your coding agent
+This repository is built on the open-source [ShipWords](https://github.com/shipwords-dev/shipwords) monorepo structure (`MIT`), with the Coast FIRE Math web app in [`sites/coast-fire/`](sites/coast-fire/):
 
-No keyword yet? [new-term-radar](https://github.com/zhuyansen/new-term-radar), a separate open-source project, catches new AI terms on X, Hugging Face, GitHub and sitemaps every day, before keyword tools list them.
+| Directory | Description |
+| --- | --- |
+| `sites/coast-fire/` | **Coast FIRE Math application** — routes, calculator models (`src/lib/`), unit tests, UI components (`src/site/`), SEO/sitemap/robots helpers, and static assets |
+| `packages/core/` | Shared SSR, SEO/metadata, and utility modules |
+| `packages/jobs/` | Shared framework package from the starter monorepo |
+| `templates/ai-site/` | Upstream starter template |
+| `tools/` | Workspace and launch-check utilities (`check-public`, `list-sites`, etc.) |
 
-Paste this into Claude Code, Codex or Cursor, with your own keyword:
+See [`sites/coast-fire/README.md`](sites/coast-fire/README.md) for detailed site-level architecture, modeling assumptions, and deployment notes.
 
-```text
-Read shipwords.dev/llms.txt and build a site for "<your keyword>"
-```
+## Local Development
 
-The agent clones the repo, creates the site and runs it locally. The rules it follows are in [AGENTS.md](AGENTS.md).
-
-## Quick start
-
-Requirements: Node 24 (see `.nvmrc`), pnpm 10 (`corepack enable`), and Git Bash or WSL on Windows. To go live you will also need a Cloudflare account and a Stripe or PayPal account.
-
-1. Fork or clone this repo, then install:
-
-   ```bash
-   pnpm install
-   ```
-
-2. Create your first site from the template, then install again so the new site gets its dependencies:
-
-   ```bash
-   pnpm new-site my-tool --domain my-tool.com
-   pnpm install
-   ```
-
-3. Put local secrets outside the repo and link them in:
-
-   ```bash
-   mkdir -p ~/.config/shipwords
-   cp sites/my-tool/.dev.vars.example ~/.config/shipwords/my-tool.dev.vars   # fill in test keys
-   pnpm setup:worktree
-   ```
-
-   The example file runs as-is: email sign-in works (the code is printed in the dev server's terminal), new accounts get sign-up credits, and generations use the mock upstream (`UPSTREAM_MOCK=1`), so no model key is needed. Fill in more as you need it:
-   - **Real generations**: a [Yir API key](https://yir.ai/?utm_source=shipwords&utm_medium=readme), with `UPSTREAM_MOCK` turned off.
-   - **Buying credits**: a Stripe test key (`sk_test_…`), then `node ../../tools/stripe-listen.mjs` in the site directory to forward webhooks.
-   - **Guest free tries**: reCAPTCHA keys. Without them, visitors sign in before their first generation.
-   - **Google sign-in**: a Google OAuth client with `http://localhost:<port>` as an origin. Optional; email sign-in works without it.
-
-4. Run it:
-
-   ```bash
-   cd sites/my-tool
-   pnpm db:generate && pnpm db:migrate:local
-   pnpm dev
-   ```
-
-When you are ready to go live, follow [docs/site-launch.md](docs/site-launch.md).
-
-## What it costs
-
-The code is free under MIT, including commercial use. What you pay for:
-
-- Domains (Cloudflare Registrar sells them at cost).
-- Cloudflare usage. Sites that stitch video clips together use Cloudflare Containers and need the Workers Paid plan.
-- Stripe or PayPal fees on each order.
-- Model calls on Yir, billed per request. Each job's maximum cost is set in `src/models.server.ts`.
-
-## Repository layout
-
-| Directory                  | What it holds                                                                                                                                                                                                            |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `packages/core`            | D1 + Drizzle, credit ledger with idempotent writes, Stripe and PayPal billing (packs, subscriptions, refunds, disputes), Better Auth, guest quota + reCAPTCHA v3, SEO/GEO helpers, analytics proxy, headless React hooks |
-| `packages/jobs`            | Workflow-based generation runtime with a one-way job state machine and automatic refunds, upstream adapter interface, Yir adapter (`@yir-ai/sdk`), mock upstream for local dev, optional ffmpeg compose container        |
-| `templates/ai-site`        | A complete, working AI image site copied by `pnpm new-site`: home, pricing, account, login, policy pages, `sitemap.xml`, `robots.txt`, `llms.txt`                                                                        |
-| `sites/<site>`             | Your sites, one per keyword, each deployed on its own                                                                                                                                                                    |
-| `sites/tinydeskai-example` | The full source of tinydeskai.io (video effect: photo slots, one-pass video edit, output check, ffmpeg compose, content pages)                                                                                           |
-| `apps/<sidecar>`           | Optional small Workers that belong to no single site                                                                                                                                                                     |
-| `tools/`                   | `new-site` scaffolder, `check-site` launch checks, `list-sites`, worktree setup, dev-port, Stripe webhook forwarding (Node built-ins only, with tests)                                                                   |
-| `docs/`                    | Architecture, local development, launch handbook                                                                                                                                                                         |
-
-Each site is a TanStack Start + React 19 app on its own Cloudflare Worker, with D1, R2 and Workflows.
-
-## Common commands
+Requirements: **Node 24+** (see `.nvmrc`) and **pnpm 10** (`pnpm@10.30.1`). No API keys, database, or Cloudflare login are required to run locally.
 
 ```bash
-pnpm new-site <dir> --domain <domain>   # scaffold sites/<dir> from the template
-pnpm list-sites                         # site list generated from each site's code and README
-pnpm setup:worktree                     # copy local secrets into a new worktree, fix dev ports
-pnpm --filter "./sites/<site>" dev
-pnpm --filter "./sites/<site>" check    # typecheck + build + launch checks
-pnpm check:packages                     # core + jobs: typecheck + tests
-pnpm check:template
-pnpm lint && pnpm test:tools
+# 1. Install dependencies
+pnpm install
+
+# 2. Start the Coast FIRE Math dev server (http://127.0.0.1:5030)
+pnpm --filter @shipwords/site-coast-fire dev
 ```
 
-## Docs
+### Testing & Verification
 
-- [Architecture and design choices](docs/architecture.md)
-- [Local development](docs/local-development.md)
-- [Site launch handbook](docs/site-launch.md)
-- [Rules for AI coding agents](AGENTS.md)
-- [Contributing](CONTRIBUTING.md) and [security policy](SECURITY.md)
+```bash
+# Run calculator & route unit tests
+pnpm --filter @shipwords/site-coast-fire test
 
-## Community
+# Run typecheck + unit tests + Cloudflare production build
+pnpm --filter @shipwords/site-coast-fire check
 
-Questions, ideas and sites you shipped go in [GitHub Discussions](https://github.com/shipwords-dev/shipwords/discussions): [Q&A](https://github.com/shipwords-dev/shipwords/discussions/categories/q-a), [Show and tell](https://github.com/shipwords-dev/shipwords/discussions/categories/show-and-tell), [Ideas](https://github.com/shipwords-dev/shipwords/discussions/categories/ideas). Bugs go in [Issues](https://github.com/shipwords-dev/shipwords/issues).
+# Preview the production build locally
+pnpm --filter @shipwords/site-coast-fire preview
+
+# Lint & check tracked files for private values
+pnpm lint
+pnpm check:public
+```
+
+### Production Configuration
+
+Before deploying from `sites/coast-fire/` (`pnpm run deploy`), configure the public build-time environment variables documented in [`sites/coast-fire/.env.example`](sites/coast-fire/.env.example):
+
+- `VITE_PUBLIC_SITE_URL` — Public HTTPS origin without a trailing slash (e.g. `https://coastfiremath.com`)
+- `VITE_CONTACT_EMAIL` — Public contact address shown on the Contact page
+- `VITE_OPERATOR_NAME` — Site operator name shown on the About page
+
+Builds without valid production settings automatically output `noindex`, omit canonical URLs, and serve an empty sitemap.
+
+## Links & Disclaimer
+
+- **Live Website**: [https://coastfiremath.com/](https://coastfiremath.com/)
+- **About**: [https://coastfiremath.com/about/](https://coastfiremath.com/about/)
+- **Privacy Policy**: [https://coastfiremath.com/privacy/](https://coastfiremath.com/privacy/)
+- **Contact**: [https://coastfiremath.com/contact/](https://coastfiremath.com/contact/)
+
+> **Educational use only:** Coast FIRE Math provides smooth mathematical projections based on user-supplied assumptions. It is not personalized financial, investment, or tax advice.
 
 ## License
 

@@ -1,145 +1,111 @@
 <div align="center">
 
-<a href="https://shipwords.dev/zh/"><img src="apps/www/public/img/og-zh.jpg" alt="shipwords：一个关键词，一个站。" width="100%"></a>
+<a href="https://coastfiremath.com/"><img src="sites/coast-fire/public/share/coast-fire-guide.png" alt="Coast FIRE Math — 免费、经通胀调整的 Coast FIRE 与退休数学计算器" width="100%"></a>
 
-**新词站群的开源框架：一个下午上一个站，上线当天就能收钱。**
+# Coast FIRE Math
 
-[![CI](https://github.com/shipwords-dev/shipwords/actions/workflows/ci.yml/badge.svg)](https://github.com/shipwords-dev/shipwords/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+**免费、纯浏览器本地运行、经通胀调整的 Coast FIRE / FIRE Number / 4% 法则 / Barista FIRE 退休规划计算器套件。**
+
+[![Website](https://img.shields.io/badge/Website-coastfiremath.com-0F766E?style=flat)](https://coastfiremath.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
 [![TanStack Start](https://img.shields.io/badge/TanStack-Start-FF4154?logo=reactquery&logoColor=white)](https://tanstack.com/start)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![GitHub stars](https://img.shields.io/github/stars/shipwords-dev/shipwords?style=flat&logo=github)](https://github.com/shipwords-dev/shipwords/stargazers)
 
 [English](README.md) · **中文**
 
 </div>
 
-shipwords 是一套免费、MIT 开源的新词站群框架，用来在 Cloudflare 上同时运营很多个 AI 图像和视频站，一个新词一个站。不变的共享：账户、支付、积分和 AI 生成只写一次，所有站共用。变的独立：每个站有自己的页面、外观和域名。官网：[shipwords.dev](https://shipwords.dev/zh/)。
+---
 
-## 为什么用 shipwords
+**Coast FIRE Math**（官网：[https://coastfiremath.com/](https://coastfiremath.com/)）是一个独立、注重隐私的退休规划计算工具站，聚焦一个核心问题：*需要攒够多少投资本金，之后就可以停止继续向退休账户追加储蓄，仅靠复利增长在目标退休年龄达成退休资产目标？*
 
-**为新词站群而生。** 每个新词上一个站，起量的继续迭代，没起来的放着不管。公共核心有 bug，修一处，所有站下次部署就能更新。每个站单独部署，有自己的数据库、文件存储和收款账户，上线或下线一个站都不影响其他站。
+所有计算均在浏览器本地完成，无需登录、无付费墙，也不会上传或保存用户的任何财务输入。
 
-**内置成熟的 AI 能力。** [tinydeskai.io](https://tinydeskai.io/) 就是用 shipwords 做的，完整源码在 [`sites/tinydeskai-example`](sites/tinydeskai-example)，可以 fork 来做你自己的词。
+## 在线工具与指南
 
-- **视频模板**：把一条爆款视频做成模板，访客上传照片，就能拿到同款视频。Tiny Desk AI 就是这样做的。
-- **成熟的换脸**：整段视频一次换完。每张上传的照片替换一位表演者，脸、发型和衣服都换上，口型仍然跟着节拍。有人没换上时，可以先按镜头自动补换再交付，tinydeskai.io 就是这样配的。
-- **主流模型，内置可用**：GPT Image、Nano Banana、Seedream、FLUX、Seedance、Veo、Kling、Wan 等，填一个 Yir API key 就能用，按次付费。
+| 工具 / 页面 | 在线地址 | 功能说明 |
+| --- | --- | --- |
+| **Coast FIRE 计算器** | [coastfiremath.com](https://coastfiremath.com/) | 计算 Coast FIRE 目标金额、资金缺口、预计达成年龄、按目标年龄反推月储蓄额、收益率/通胀情景对比，以及本地 Excel (`.xlsx`) 与打印/PDF 导出。 |
+| **按年龄查 Coast FIRE 表** | [/coast-fire-calculator-by-age/](https://coastfiremath.com/coast-fire-calculator-by-age/) | 交互式对比 22–60 岁各年龄段与不同月支出档位的 Coast FIRE 目标金额。 |
+| **FIRE Number 计算器** | [/fire-number-calculator/](https://coastfiremath.com/fire-number-calculator/) | 按 3%、3.5%、4% 及自定义提取率估算完整退休目标资产、达成进度与可选时间线。 |
+| **4% 法则计算器** | [/4-percent-rule-calculator/](https://coastfiremath.com/4-percent-rule-calculator/) | 测算 4% 法则及自定义提取率下的退休年度可提取金额与所需组合规模。 |
+| **Barista FIRE 计算器** | [/barista-fire-calculator/](https://coastfiremath.com/barista-fire-calculator/) | 结合兼职收入与投资组合提取，估算半退休过渡期（Bridge-to-Retirement）的资产目标。 |
+| **什么是 Coast FIRE？** | [/what-is-coast-fire/](https://coastfiremath.com/what-is-coast-fire/) | 系统讲解 Coast FIRE 概念、计算公式、完整算例、账户税务类型及与其他 FIRE 路线的区别。 |
+| **Coast FIRE vs FIRE 对比** | [/coast-fire-vs-fire/](https://coastfiremath.com/coast-fire-vs-fire/) | 在相同目标资产与假设下，并排对比 Coast FIRE 与 Full FIRE 的关键差异。 |
+| **计算方法与编辑政策** | [/editorial-policy/](https://coastfiremath.com/editorial-policy/) | 公开说明公式推导、假设口径、取整规则与官方参考来源。 |
 
-**开箱就能收钱。** 每个站都自带：
+## 核心模型与隐私设计
 
-- Google 和邮箱登录、账户页
-- Stripe 和 PayPal、积分包与订阅、订单与退款
-- 邮件通知
-- 游客免费试用与防刷（reCAPTCHA v3）
-- 隐私、条款、退款、DMCA 页面
-- SEO、`sitemap.xml`、`robots.txt`、`llms.txt`、统计
+- **今日购买力口径与精确实际收益率**：采用 `(1 + r) / (1 + i) - 1` 精确换算名义收益率与通胀率，并按月度有效复利进行逐月推演。
+- **灵活的储蓄口径**：支持固定名义月供（默认）以及随通胀同步递增的实际购买力月供模式。
+- **目标年龄反推规划器**：选定希望达成 Coast FIRE 的目标年龄，反推所需每月储蓄额，并一键应用到主计算器。
+- **纯前端计算，零数据留存**：所有财务输入仅保存在当前页面的 React 内存中，不会上传服务器、不写入 URL、也不写入浏览器本地存储。
+- **按需本地导出**：仅在用户主动点击时于浏览器本地生成 Excel (`.xlsx`) 表格或打印/PDF 摘要。
 
-收钱的代码所有站共用，并有测试覆盖：重复扣款、重复或乱序的支付通知、失败任务的退款都测过。
+## 目录结构
 
-## 让编程 Agent 帮你建站
+本仓库基于开源的 [ShipWords](https://github.com/shipwords-dev/shipwords) Monorepo 结构（`MIT`），Coast FIRE Math 的核心代码位于 [`sites/coast-fire/`](sites/coast-fire/)：
 
-还没想好做哪个词？[new-term-radar](https://github.com/zhuyansen/new-term-radar)（第三方开源项目）每天从 X、Hugging Face、GitHub 和 sitemap 里抓刚冒头的 AI 新词，比关键词工具早。
+| 目录 | 说明 |
+| --- | --- |
+| `sites/coast-fire/` | **Coast FIRE Math 主应用** — 页面路由、计算引擎（`src/lib/`）、单元测试、UI 组件（`src/site/`）、SEO/Sitemap/Robots 与静态资源 |
+| `packages/core/` | 共享的 SSR、SEO/元数据与工具模块 |
+| `packages/jobs/` | Monorepo 模板自带的共享包 |
+| `templates/ai-site/` | 上游脚手架模板 |
+| `tools/` | 工作区与公开仓库安全检查脚本（`check-public`、`list-sites` 等） |
 
-把下面这句换成你的关键词，粘贴到 Claude Code、Codex 或 Cursor：
+更多站点架构、假设细节与部署说明请参阅 [`sites/coast-fire/README.md`](sites/coast-fire/README.md)。
 
-```text
-阅读 shipwords.dev/llms.txt，帮我为「你的关键词」做一个站
-```
+## 本地开发与测试
 
-Agent 会克隆仓库、生成站点并在本地跑起来。它遵守的规则写在 [AGENTS.md](AGENTS.md)。
-
-## 快速开始
-
-需要 Node 24（见 `.nvmrc`）、pnpm 10（`corepack enable`），Windows 上用 Git Bash 或 WSL。正式上线还需要 Cloudflare 账号，以及 Stripe 或 PayPal 账号。
-
-1. Fork 或克隆本仓库，然后安装依赖：
-
-   ```bash
-   pnpm install
-   ```
-
-2. 从模板生成第一个站，再安装一次，让新站装上依赖：
-
-   ```bash
-   pnpm new-site my-tool --domain my-tool.com
-   pnpm install
-   ```
-
-3. 本地密钥放在仓库外，再链接进来：
-
-   ```bash
-   mkdir -p ~/.config/shipwords
-   cp sites/my-tool/.dev.vars.example ~/.config/shipwords/my-tool.dev.vars   # 填入测试 key
-   pnpm setup:worktree
-   ```
-
-   示例文件不改也能跑：邮箱登录可用（验证码打印在 dev server 的终端里），新账户有注册赠送积分，生成走模拟上游（`UPSTREAM_MOCK=1`），不需要任何模型 key。需要时再补：
-   - **真实生成**：填 [Yir API key](https://yir.ai/?utm_source=shipwords&utm_medium=readme)，并关掉 `UPSTREAM_MOCK`。
-   - **购买积分**：填 Stripe 测试 key（`sk_test_…`），然后在站点目录运行 `node ../../tools/stripe-listen.mjs` 转发 webhook。
-   - **游客免费试用**：填 reCAPTCHA key。不填的话，访客要先登录才能生成。
-   - **Google 登录**：一个以 `http://localhost:<port>` 为来源的 Google OAuth 客户端。可选，不填也能用邮箱登录。
-
-4. 运行：
-
-   ```bash
-   cd sites/my-tool
-   pnpm db:generate && pnpm db:migrate:local
-   pnpm dev
-   ```
-
-准备上线时，按 [docs/site-launch.md](docs/site-launch.md) 操作（英文）。
-
-## 要花多少钱
-
-代码免费，MIT 许可，可以商用。你要付的是：
-
-- 域名（Cloudflare Registrar 按成本价出售）。
-- Cloudflare 用量费。需要把多段视频拼接起来的站会用到 Cloudflare Containers，要开 Workers Paid 套餐。
-- 每笔订单的 Stripe 或 PayPal 手续费。
-- Yir 上按次计费的模型费用。每个任务的成本上限在 `src/models.server.ts` 里设定。
-
-## 仓库结构
-
-| 目录                       | 内容                                                                                                                                                                    |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/core`            | D1 + Drizzle、幂等写入的积分账本、Stripe 与 PayPal 计费（积分包、订阅、退款、争议）、Better Auth、游客配额 + reCAPTCHA v3、SEO/GEO 工具、统计代理、headless React hooks |
-| `packages/jobs`            | 基于 Workflows 的生成任务运行时：单向任务状态机、自动退款、上游适配接口、Yir 适配（`@yir-ai/sdk`）、本地开发用的模拟上游、可选的 ffmpeg 拼接容器                        |
-| `templates/ai-site`        | 一个完整可用的 AI 图像站，由 `pnpm new-site` 复制：首页、定价、账户、登录、政策页、`sitemap.xml`、`robots.txt`、`llms.txt`                                              |
-| `sites/<site>`             | 你的站，一个关键词一个，各自单独部署                                                                                                                                    |
-| `sites/tinydeskai-example` | tinydeskai.io 的完整源码（视频特效：照片槽位、整段一次编辑、结果检查、ffmpeg 拼接、内容页）                                                                             |
-| `apps/<sidecar>`           | 可选的小型 Worker，不属于任何单个站                                                                                                                                     |
-| `tools/`                   | `new-site` 脚手架、`check-site` 上线检查、`list-sites`、worktree 初始化、dev 端口、Stripe webhook 转发（只用 Node 内置模块，带测试）                                    |
-| `docs/`                    | 架构、本地开发、上线手册（英文）                                                                                                                                        |
-
-每个站是一个 TanStack Start + React 19 应用，跑在独立的 Cloudflare Worker 上，使用 D1、R2 和 Workflows。
-
-## 常用命令
+环境要求：**Node 24+**（见 `.nvmrc`）与 **pnpm 10**（`pnpm@10.30.1`）。本地运行无需任何 API 密钥、数据库或 Cloudflare 登录。
 
 ```bash
-pnpm new-site <dir> --domain <domain>   # 从模板生成 sites/<dir>
-pnpm list-sites                         # 根据各站代码和 README 生成站点列表
-pnpm setup:worktree                     # 把本地密钥复制到新 worktree，修正 dev 端口
-pnpm --filter "./sites/<site>" dev
-pnpm --filter "./sites/<site>" check    # 类型检查 + 构建 + 上线检查
-pnpm check:packages                     # core + jobs：类型检查 + 测试
-pnpm check:template
-pnpm lint && pnpm test:tools
+# 1. 安装依赖
+pnpm install
+
+# 2. 启动 Coast FIRE Math 本地开发服务器（http://127.0.0.1:5030）
+pnpm --filter @shipwords/site-coast-fire dev
 ```
 
-## 文档（英文）
+### 常用校验命令
 
-- [架构与设计取舍](docs/architecture.md)
-- [本地开发](docs/local-development.md)
-- [上线手册](docs/site-launch.md)
-- [AI 编程 Agent 规则](AGENTS.md)
-- [贡献指南](CONTRIBUTING.md) 与 [安全政策](SECURITY.md)
+```bash
+# 运行计算器与路由单元测试
+pnpm --filter @shipwords/site-coast-fire test
 
-## 社区
+# 运行类型检查 + 单元测试 + Cloudflare 生产构建
+pnpm --filter @shipwords/site-coast-fire check
 
-提问、想法和你上线的站，发到 [GitHub Discussions](https://github.com/shipwords-dev/shipwords/discussions)：[Q&A](https://github.com/shipwords-dev/shipwords/discussions/categories/q-a)、[Show and tell](https://github.com/shipwords-dev/shipwords/discussions/categories/show-and-tell)、[Ideas](https://github.com/shipwords-dev/shipwords/discussions/categories/ideas)。Bug 请提 [Issues](https://github.com/shipwords-dev/shipwords/issues)。
+# 本地预览生产构建结果
+pnpm --filter @shipwords/site-coast-fire preview
 
-## 许可
+# 代码检查与公开仓库隐私字段扫描
+pnpm lint
+pnpm check:public
+```
+
+### 生产环境构建变量
+
+在 `sites/coast-fire/` 执行生产部署（`pnpm run deploy`）前，需配置 [`sites/coast-fire/.env.example`](sites/coast-fire/.env.example) 中的三个公开构建变量：
+
+- `VITE_PUBLIC_SITE_URL` — 公开 HTTPS 站点根地址（不带末尾斜杠，例如 `https://coastfiremath.com`）
+- `VITE_CONTACT_EMAIL` — 联系页面展示的公开联系邮箱
+- `VITE_OPERATOR_NAME` — 关于页面展示的维护者名称
+
+未完整配置上述变量时，构建产物会自动输出 `noindex`、省略 canonical 链接并返回空 sitemap。
+
+## 相关链接与免责声明
+
+- **官方网站**：[https://coastfiremath.com/](https://coastfiremath.com/)
+- **关于项目**：[https://coastfiremath.com/about/](https://coastfiremath.com/about/)
+- **隐私政策**：[https://coastfiremath.com/privacy/](https://coastfiremath.com/privacy/)
+- **联系我们**：[https://coastfiremath.com/contact/](https://coastfiremath.com/contact/)
+
+> **仅作教育与测算参考**：Coast FIRE Math 基于用户输入假设提供平滑数学推演，不构成个性化财务、投资或税务建议。
+
+## 开源协议
 
 [MIT](LICENSE)
