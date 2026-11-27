@@ -19,22 +19,22 @@
 
 ---
 
-**Coast FIRE Math** ([https://coastfiremath.com/](https://coastfiremath.com/)) is an independent, privacy-first retirement planning toolkit designed around one practical question: *when can retirement contributions become optional, letting compound growth carry your portfolio to your retirement target?*
+**Coast FIRE Math** ([https://coastfiremath.com/](https://coastfiremath.com/)) is an independent, privacy-first retirement planning toolkit designed around one practical question: _when can retirement contributions become optional, letting compound growth carry your portfolio to your retirement target?_
 
 All calculations run locally in your browser with no accounts, no paywalls, and no server-side storage of your financial numbers.
 
 ## Live Calculators & Guides
 
-| Tool / Guide | Live Page | What It Does |
-| --- | --- | --- |
-| **Coast FIRE Calculator** | [coastfiremath.com](https://coastfiremath.com/) | Computes your Coast FIRE number, funding gap, estimated Coast age, target-age reverse monthly savings plan, return/inflation scenarios, and optional Excel (`.xlsx`) & Print/PDF exports. |
-| **Coast FIRE by Age** | [/coast-fire-calculator-by-age/](https://coastfiremath.com/coast-fire-calculator-by-age/) | Interactive comparison table of Coast FIRE targets from age 22 to 60 across spending tiers and editable assumptions. |
-| **FIRE Number Calculator** | [/fire-number-calculator/](https://coastfiremath.com/fire-number-calculator/) | Estimates full retirement targets across 3%, 3.5%, 4%, and custom withdrawal rates, with funding progress and an optional timeline. |
-| **4% Rule Calculator** | [/4-percent-rule-calculator/](https://coastfiremath.com/4-percent-rule-calculator/) | Models retirement withdrawal rates, annual portfolio-funded spending, and required nest egg sizes. |
-| **Barista FIRE Calculator** | [/barista-fire-calculator/](https://coastfiremath.com/barista-fire-calculator/) | Combines part-time income with portfolio withdrawals to estimate bridge-to-retirement targets. |
-| **What Is Coast FIRE?** | [/what-is-coast-fire/](https://coastfiremath.com/what-is-coast-fire/) | Plain-English guide covering the Coast FIRE formula, worked examples, account types, and comparisons with other FIRE paths. |
-| **Coast FIRE vs FIRE** | [/coast-fire-vs-fire/](https://coastfiremath.com/coast-fire-vs-fire/) | Side-by-side comparison of Coast FIRE and Full FIRE using the same target portfolio and assumptions. |
-| **Methodology** | [/editorial-policy/](https://coastfiremath.com/editorial-policy/) | Transparent documentation of formulas, rounding conventions, assumptions, and official sources. |
+| Tool / Guide                | Live Page                                                                                 | What It Does                                                                                                                                                                              |
+| --------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Coast FIRE Calculator**   | [coastfiremath.com](https://coastfiremath.com/)                                           | Computes your Coast FIRE number, funding gap, estimated Coast age, target-age reverse monthly savings plan, return/inflation scenarios, and optional Excel (`.xlsx`) & Print/PDF exports. |
+| **Coast FIRE by Age**       | [/coast-fire-calculator-by-age/](https://coastfiremath.com/coast-fire-calculator-by-age/) | Interactive comparison table of Coast FIRE targets from age 22 to 60 across spending tiers and editable assumptions.                                                                      |
+| **FIRE Number Calculator**  | [/fire-number-calculator/](https://coastfiremath.com/fire-number-calculator/)             | Estimates full retirement targets across 3%, 3.5%, 4%, and custom withdrawal rates, with funding progress and an optional timeline.                                                       |
+| **4% Rule Calculator**      | [/4-percent-rule-calculator/](https://coastfiremath.com/4-percent-rule-calculator/)       | Models retirement withdrawal rates, annual portfolio-funded spending, and required nest egg sizes.                                                                                        |
+| **Barista FIRE Calculator** | [/barista-fire-calculator/](https://coastfiremath.com/barista-fire-calculator/)           | Combines part-time income with portfolio withdrawals to estimate bridge-to-retirement targets.                                                                                            |
+| **What Is Coast FIRE?**     | [/what-is-coast-fire/](https://coastfiremath.com/what-is-coast-fire/)                     | Plain-English guide covering the Coast FIRE formula, worked examples, account types, and comparisons with other FIRE paths.                                                               |
+| **Coast FIRE vs FIRE**      | [/coast-fire-vs-fire/](https://coastfiremath.com/coast-fire-vs-fire/)                     | Side-by-side comparison of Coast FIRE and Full FIRE using the same target portfolio and assumptions.                                                                                      |
+| **Methodology**             | [/editorial-policy/](https://coastfiremath.com/editorial-policy/)                         | Transparent documentation of formulas, rounding conventions, assumptions, and official sources.                                                                                           |
 
 ## Modeling & Privacy Principles
 
@@ -48,13 +48,13 @@ All calculations run locally in your browser with no accounts, no paywalls, and 
 
 This repository is built on the open-source [ShipWords](https://github.com/shipwords-dev/shipwords) monorepo structure (`MIT`), with the Coast FIRE Math web app in [`sites/coast-fire/`](sites/coast-fire/):
 
-| Directory | Description |
-| --- | --- |
-| `sites/coast-fire/` | **Coast FIRE Math application** — routes, calculator models (`src/lib/`), unit tests, UI components (`src/site/`), SEO/sitemap/robots helpers, and static assets |
-| `packages/core/` | Shared SSR, SEO/metadata, and utility modules |
-| `packages/jobs/` | Shared framework package from the starter monorepo |
-| `templates/ai-site/` | Upstream starter template |
-| `tools/` | Workspace and launch-check utilities (`check-public`, `list-sites`, etc.) |
+| Directory            | Description                                                                                                                                                      |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sites/coast-fire/`  | **Coast FIRE Math application** — routes, calculator models (`src/lib/`), unit tests, UI components (`src/site/`), SEO/sitemap/robots helpers, and static assets |
+| `packages/core/`     | Shared SSR, SEO/metadata, and utility modules                                                                                                                    |
+| `packages/jobs/`     | Shared framework package from the starter monorepo                                                                                                               |
+| `templates/ai-site/` | Upstream starter template                                                                                                                                        |
+| `tools/`             | Workspace and launch-check utilities (`check-public`, `list-sites`, etc.)                                                                                        |
 
 See [`sites/coast-fire/README.md`](sites/coast-fire/README.md) for detailed site-level architecture, modeling assumptions, and deployment notes.
 
